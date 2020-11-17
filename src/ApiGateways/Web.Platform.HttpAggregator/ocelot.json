@@ -1,37 +1,56 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/identity",
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/api/account/users",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "identity",
-          "Port": 5001
+          "Port": 5000
         }
       ],
-      "UpstreamPathTemplate": "identity",
+      "UpstreamPathTemplate": "/users",
       "UpstreamHttpMethod": [ "Get" ],
       "ReRoutesCaseSensitive": false,
-      "DangerousAcceptAnyServerCertificateValidator": true
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "User" ]
+      }
     },
+
     {
+      "DownstreamPathTemplate": "/api/account/login",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5001
+          "Host": "identity",
+          "Port": 5000
         }
       ],
-      "DownstreamPathTemplate": "/",
-      "UpstreamPathTemplate": "/",
+      "UpstreamPathTemplate": "/login",
       "UpstreamHttpMethod": [ "Post" ],
-      "RouteIsCaseSensitive": false,
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
+
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/account/register",
       "DownstreamScheme": "http",
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING",
-        "AllowedScopes": []
-      }
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/register",
+      "UpstreamHttpMethod": [ "Post" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
     }
   ],
+
 
   "ConnectionStrings": {
     "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=_CHANGE_ME;Trusted_Connection=True;MultipleActiveResultSets=true"

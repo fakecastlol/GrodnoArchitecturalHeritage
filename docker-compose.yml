@@ -15,3 +15,14 @@ services:
     restart: always
     build:
       context: src/Services/Identity
+
+  dbUserService:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        container_name: dbUserService
+        restart: always
+        environment:
+            SA_PASSWORD: "Password_111ssassSsvc111"
+            ACCEPT_EULA: "Y"
+            MSSQL_PID: "Express"
+        ports: 
+            - 14330:1433

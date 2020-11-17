@@ -71,10 +71,12 @@ namespace Identity.Infrastructure.Business.Services
                 {
                     new Claim("id", user.Id.ToString()),
                     new Claim("email", user.Email),
-                    new Claim("role", user.Role.ToString()),
+                    new Claim("scope", user.Role.ToString()),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+                Audience = "http://jwtauthzsrv.azurewebsites.net",
+                Issuer = "http://jwtauthzsrv.azurewebsites.net"
 
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -86,24 +88,22 @@ namespace Identity.Infrastructure.Business.Services
             // get account from database
             var account = await (await _userRepository.GetAllAsync(x =>
                     x.Email.Equals(loginCoreModel.Email)))
-                .SingleOrDefaultAsync();
+                .FirstOrDefaultAsync();
             // check account found and verify password
             if (account == null || !BC.Verify(loginCoreModel.Password, account.Password))
             {
                 // authentication failed
-                return null;
+                throw new ValidationException("", "");
             }
-            else
-            {
-                // authentication successful
-                var userCoreModel = _mapper.Map<UserCoreModel>(account);
 
-                var token = GenerateJwtToken(userCoreModel);
+            // authentication successful
+            var userCoreModel = _mapper.Map<UserCoreModel>(account);
 
-                userCoreModel.Token = token;
+            var token = GenerateJwtToken(userCoreModel);
 
-                return userCoreModel;
-            }
+            userCoreModel.Token = token;
+
+            return userCoreModel;
         }
 
         public async Task<UserCoreModel> CreateAsync(RegisterCoreModel registerCoreModel)
@@ -127,8 +127,6 @@ namespace Identity.Infrastructure.Business.Services
             var token = GenerateJwtToken(userCoreModel);
 
             userCoreModel.Token = token;
-
-            await _userRepository.SaveAsync();
 
             return userCoreModel;
         }
