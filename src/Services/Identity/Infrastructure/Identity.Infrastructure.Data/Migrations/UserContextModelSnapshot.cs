@@ -19,32 +19,6 @@ namespace Identity.Infrastructure.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Identity.Domain.Core.Entities.RoleEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("35da506a-382f-4fac-ba03-b9030044db23"),
-                            Name = "admin"
-                        },
-                        new
-                        {
-                            Id = new Guid("2b11e99d-bd4c-40fb-8d7c-bedf94cd5032"),
-                            Name = "user"
-                        });
-                });
-
             modelBuilder.Entity("Identity.Domain.Core.Entities.UserEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -57,30 +31,21 @@ namespace Identity.Infrastructure.Data.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("RoleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8031df37-356f-474e-88b0-e260993c36fa"),
-                            Email = "admin@mail.ru",
-                            Password = "123456",
-                            RoleId = new Guid("35da506a-382f-4fac-ba03-b9030044db23")
+                            Id = new Guid("444c6a18-24be-47cc-938b-0a62afc14256"),
+                            Email = "admin@gmail.ru",
+                            Password = "admin",
+                            Role = 1
                         });
-                });
-
-            modelBuilder.Entity("Identity.Domain.Core.Entities.UserEntity", b =>
-                {
-                    b.HasOne("Identity.Domain.Core.Entities.RoleEntity", "Role")
-                        .WithMany("Users")
-                        .HasForeignKey("RoleId");
                 });
 #pragma warning restore 612, 618
         }

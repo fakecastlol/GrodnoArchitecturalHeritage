@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text.Json.Serialization;
-using Identity.Domain.Core.Entities.Abstract;
+﻿using Identity.Domain.Core.Entities.Abstract;
 
 namespace Identity.Domain.Core.Entities
 {
@@ -8,10 +6,8 @@ namespace Identity.Domain.Core.Entities
     {
         public string Email { get; set; }
 
-        [JsonIgnore]
         public string Password { get; set; }
 
-        public Guid? RoleId { get; set; }
-        public RoleEntity Role { get; set; }
+        public Roles Role { get; set; }
     }
 }

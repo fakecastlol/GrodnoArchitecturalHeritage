@@ -1,9 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Identity.Domain.Core.Entities;
+﻿using Identity.Domain.Core.Entities;
 using Identity.Domain.Interfaces.Repositories.Generic;
-using Microsoft.EntityFrameworkCore.Query;
 
 namespace Identity.Domain.Interfaces.Repositories
 {

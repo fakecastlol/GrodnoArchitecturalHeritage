@@ -38,11 +38,9 @@ namespace Identity.API
             services.AddTransient<DbContext, UserContext>();
 
             services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IRoleRepository, RoleRepository>();
 
             services.AddAutoMapper(Assembly.Load("Identity.Infrastructure.Business"), Assembly.Load("Identity.API"));
 
-            services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IUserService, UserService>();
             services.AddControllers();
         }

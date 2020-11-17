@@ -21,15 +21,13 @@ namespace Identity.Infrastructure.Business.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly IRoleRepository _roleRepository;
         private readonly IMapper _mapper;
         private readonly AppSettings _appSettings;
 
-        public UserService(IOptions<AppSettings> appSettings, IUserRepository userRepository, IMapper mapper, IRoleRepository roleRepository)
+        public UserService(IOptions<AppSettings> appSettings, IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
             _mapper = mapper;
-            _roleRepository = roleRepository;
             _appSettings = appSettings.Value;
         }
 
@@ -81,22 +79,6 @@ namespace Identity.Infrastructure.Business.Services
             return tokenHandler.WriteToken(token);
         }
 
-        //public async Task<UserCoreModel> Authenticate(LoginCoreModel loginCoreModel)
-        //{
-        //    var user = await (await _userRepository.GetAllAsync(x =>
-        //        x.Email.Equals(loginCoreModel.Email) && (x.Password.Equals(loginCoreModel.Password)),
-        //            includes => includes.Include(c => c.Role)))
-        //        .FirstOrDefaultAsync();
-        //    if (user == null) return null;
-
-        //    var userCoreModel = _mapper.Map<UserCoreModel>(user);
-        //    var token = GenerateJwtToken(userCoreModel);
-
-        //    userCoreModel.Token = token;
-
-        //    return userCoreModel;
-        //}
-
         public async Task<UserCoreModel> Authenticate(LoginCoreModel loginCoreModel)
         {
             // get account from database
@@ -135,6 +117,7 @@ namespace Identity.Infrastructure.Business.Services
             //var role = await (await _roleRepository.GetAllAsync(r => r.Name.Equals("user"))).FirstAsync();
             //user.RoleId = role.Id;
 
+            user.Role = Roles.User;
             // hash password
             user.Password = BC.HashPassword(registerCoreModel.Password);
 

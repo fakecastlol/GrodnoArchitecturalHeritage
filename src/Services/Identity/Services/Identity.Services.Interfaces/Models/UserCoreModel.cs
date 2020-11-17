@@ -1,4 +1,5 @@
-﻿using Identity.Services.Interfaces.Models.Abstract;
+﻿using Identity.Domain.Core.Entities;
+using Identity.Services.Interfaces.Models.Abstract;
 
 namespace Identity.Services.Interfaces.Models
 {
@@ -8,6 +9,7 @@ namespace Identity.Services.Interfaces.Models
         //public string Password { get; set; }
         public string Token { get; set; }
 
-        public RoleCoreModel Role { get; set; }
+        public Roles Role { get; set; }
+        //public RoleCoreModel Role { get; set; }
     }
 }

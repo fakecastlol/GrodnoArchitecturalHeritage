@@ -11,8 +11,8 @@ namespace Identity.Infrastructure.Business.Support.Adapter
             CreateMap<UserEntity, UserCoreModel>();
             CreateMap<UserCoreModel, UserEntity>();
 
-            CreateMap<RoleEntity, RoleCoreModel>();
-            CreateMap<RoleCoreModel, RoleEntity>();
+            //CreateMap<RoleEntity, RoleCoreModel>();
+            //CreateMap<RoleCoreModel, RoleEntity>();
 
             CreateMap<UserEntity, RegisterCoreModel>();
             CreateMap<RegisterCoreModel, UserEntity>();
