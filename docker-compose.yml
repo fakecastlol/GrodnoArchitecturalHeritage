@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  web.platform.httpaggregator:
+    image: ${DOCKER_REGISTRY-}webplatformhttpaggregator
+    build:
+      context: .
+      dockerfile: src/ApiGateways/Web.Platform.HttpAggregator/Dockerfile
+
+  identity.api:
+    image: ${DOCKER_REGISTRY-}identityapi
+    build:
+      context: .
+      dockerfile: src/Services/Identity/Identity.API/Dockerfile

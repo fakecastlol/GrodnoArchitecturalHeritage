@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Identity.Domain.Core\Identity.Domain.Core.csproj" />
+    <ProjectReference Include="..\..\Domain\Identity.Domain.Interfaces\Identity.Domain.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Services\Identity.Services.Interfaces\Identity.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\Identity.Infrastructure.Data\Identity.Infrastructure.Data.csproj" />
+  </ItemGroup>
+
+</Project>
