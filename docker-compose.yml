@@ -1,14 +1,17 @@
 version: '3.4'
 
 services:
-  web.platform.httpaggregator:
-    image: ${DOCKER_REGISTRY-}webplatformhttpaggregator
+  gateway:
+    depends_on: [identity]
+    image: gateway:latest
+    container_name: gateway
+    restart: always
     build:
-      context: .
-      dockerfile: src/ApiGateways/Web.Platform.HttpAggregator/Dockerfile
+      context: src/ApiGateways
 
-  identity.api:
-    image: ${DOCKER_REGISTRY-}identityapi
+  identity:
+    image: identity:latest
+    container_name: identity
+    restart: always
     build:
-      context: .
-      dockerfile: src/Services/Identity/Identity.API/Dockerfile
+      context: src/Services/Identity
