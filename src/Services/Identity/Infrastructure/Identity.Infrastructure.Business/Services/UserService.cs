@@ -70,7 +70,7 @@ namespace Identity.Infrastructure.Business.Services
                 {
                     new Claim("id", user.Id.ToString()),
                     new Claim("email", user.Email),
-                    //new Claim("role", user.Role.Name),
+                    new Claim("role", user.Role.ToString()),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -114,18 +114,21 @@ namespace Identity.Infrastructure.Business.Services
                 throw new ValidationException($"User with email {user.Email} already exists", "");
             }
 
-            //var role = await (await _roleRepository.GetAllAsync(r => r.Name.Equals("user"))).FirstAsync();
-            //user.RoleId = role.Id;
-
             user.Role = Roles.User;
             // hash password
             user.Password = BC.HashPassword(registerCoreModel.Password);
 
-            var create = await _userRepository.CreateAsync(user);
+            var createEntity = await _userRepository.CreateAsync(user);
 
-            var result = _mapper.Map<UserCoreModel>(create);
+            var userCoreModel = _mapper.Map<UserCoreModel>(createEntity);
 
-            return result;
+            var token = GenerateJwtToken(userCoreModel);
+
+            userCoreModel.Token = token;
+
+            await _userRepository.SaveAsync();
+
+            return userCoreModel;
         }
 
         public async Task<UserCoreModel> UpdateAsync(UserCoreModel userCoreModel)
