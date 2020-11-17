@@ -2,6 +2,7 @@
 using Identity.Domain.Core.Entities;
 using Identity.Domain.Interfaces.Repositories;
 using Identity.Services.Interfaces.Contracts;
+using Identity.Services.Interfaces.Contracts.Generic;
 using Identity.Services.Interfaces.Helpers;
 using Identity.Services.Interfaces.Models;
 using Identity.Services.Interfaces.Validation;
@@ -31,9 +32,9 @@ namespace Identity.Infrastructure.Business.Services
             _appSettings = appSettings.Value;
         }
 
-        public async Task<IEnumerable<UserCoreModel>> GetAllAsync()
+        public async Task<IEnumerable<RequestUserCoreModel>> GetAllAsync()
         {
-            var result = _mapper.Map<IEnumerable<UserEntity>, IEnumerable<UserCoreModel>>(await _userRepository.GetAllAsync());
+            var result = _mapper.Map<IEnumerable<UserEntity>, IEnumerable<RequestUserCoreModel>>(await _userRepository.GetAllAsync());
 
             return result;
         }
@@ -145,6 +146,11 @@ namespace Identity.Infrastructure.Business.Services
         public async Task DeleteAsync(int id)
         {
             await _userRepository.DeleteAsync(id);
+        }
+
+        Task<IEnumerable<UserCoreModel>> IGenericService<UserCoreModel>.GetAllAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }
