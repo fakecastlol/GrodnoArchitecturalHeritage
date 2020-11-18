@@ -19,18 +19,10 @@ namespace Web.Platform.HttpAggregator
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             var authenticationProviderKey = "Bearer";
-
-            //services.AddAuthentication()
-            //    .AddJwtBearer(authenticationProviderKey, x =>
-            //    {
-            //        x.Authority = "test";
-            //        x.Audience = "test";
-            //    });
 
             services.AddAuthentication().AddJwtBearer(authenticationProviderKey, options => {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -48,7 +40,6 @@ namespace Web.Platform.HttpAggregator
             services.AddOcelot(Configuration);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

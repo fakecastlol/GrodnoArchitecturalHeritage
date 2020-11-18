@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +24,7 @@ namespace Identity.Infrastructure.Business.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly IJwtService _appSettings;
+        private readonly JwtSettings _appSettings;
         private readonly IMapper _mapper;
 
         public UserService(IUserRepository userRepository, IOptions<JwtSettings> appSettings, IMapper mapper)
@@ -34,9 +34,9 @@ namespace Identity.Infrastructure.Business.Services
             _appSettings = appSettings.Value;
         }
 
-        public async Task<IEnumerable<UserResponseCoreModel>> GetAllAsync()
+        public async Task<IQueryable<UserResponseCoreModel>> GetAllAsync()
         {
-            var result = _mapper.Map<IEnumerable<UserEntity>, IEnumerable<UserResponseCoreModel>>(await _userRepository.GetAllAsync());
+            var result = _mapper.Map<IQueryable<UserEntity>, IQueryable<UserResponseCoreModel>>(await _userRepository.GetAllAsync());
 
             return result;
         }

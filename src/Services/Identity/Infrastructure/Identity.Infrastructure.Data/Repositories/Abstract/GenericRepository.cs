@@ -35,7 +35,7 @@ namespace Identity.Infrastructure.Data.Repositories.Abstract
             });
         }
 
-        public async Task<TEntity> GetIdAsync(int id)
+        public async Task<TEntity> GetByIdAsync(Guid id)
         {
             var result = await _dbSet.FindAsync(id);
 

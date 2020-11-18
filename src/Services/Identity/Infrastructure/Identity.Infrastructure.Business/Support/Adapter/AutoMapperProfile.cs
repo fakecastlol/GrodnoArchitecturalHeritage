@@ -18,6 +18,9 @@ namespace Identity.Infrastructure.Business.Support.Adapter
 
             CreateMap<UserEntity, LoginResponseCoreModel>();
             CreateMap<LoginResponseCoreModel, UserEntity>();
+
+            CreateMap<RegisterCoreModel, RegisterRequestModel>();
+            CreateMap<RegisterRequestModel, RegisterCoreModel>();
         }
     }
 }

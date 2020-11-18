@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.API.Controllers
 {
@@ -8,14 +6,13 @@ namespace Identity.API.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        [Authorize(Roles = "admin, user")]
+        [HttpGet("index")]
         public IActionResult Index()
         {
-            string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
-            return Content($"your role: {role}");
+            return Content("index page");
         }
 
-        [Authorize(Roles = "admin")]
+        [HttpGet("about")]
         public IActionResult About()
         {
             return Content("login only for administrator");

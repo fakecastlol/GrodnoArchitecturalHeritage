@@ -6,14 +6,17 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0DCA2E42-3C78-45CD-AF8A-BA569F8F57CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B9F19542-203A-476B-A94C-FFF016730066}"
+	ProjectSection(SolutionItems) = preProject
+		src\Services\Identity\Dockerfile = src\Services\Identity\Dockerfile
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{887CBD3D-45D4-4807-B2B5-839509DF342D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Platform.HttpAggregator", "src\ApiGateways\Web.Platform.HttpAggregator\Web.Platform.HttpAggregator.csproj", "{BF6EC550-7349-4E48-88BF-06FF19334968}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Platform.HttpAggregator", "src\ApiGateways\Web.Platform.HttpAggregator\Web.Platform.HttpAggregator.csproj", "{BF6EC550-7349-4E48-88BF-06FF19334968}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{64A22F18-976E-4FAD-B414-4756870D7CA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API", "src\Services\Identity\Identity.API\Identity.API.csproj", "{CE5934DE-FB09-4CCC-9B32-1F478E82DA09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.API", "src\Services\Identity\Identity.API\Identity.API.csproj", "{CE5934DE-FB09-4CCC-9B32-1F478E82DA09}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E5EA9E19-9400-41E7-91CA-DB58C6E7AF6D}"
 EndProject
@@ -23,15 +26,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5FD99E7F-5DB2-4F23-BA89-85AB844911BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Domain.Core", "src\Services\Identity\Domain\Identity.Domain.Core\Identity.Domain.Core.csproj", "{4312BEAD-2C5F-4C5E-A04A-F6522940143C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Domain.Core", "src\Services\Identity\Domain\Identity.Domain.Core\Identity.Domain.Core.csproj", "{4312BEAD-2C5F-4C5E-A04A-F6522940143C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Domain.Interfaces", "src\Services\Identity\Domain\Identity.Domain.Interfaces\Identity.Domain.Interfaces.csproj", "{88E300CF-64EF-411F-AEDD-1E574DF09D78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Domain.Interfaces", "src\Services\Identity\Domain\Identity.Domain.Interfaces\Identity.Domain.Interfaces.csproj", "{88E300CF-64EF-411F-AEDD-1E574DF09D78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Infrastructure.Business", "src\Services\Identity\Infrastructure\Identity.Infrastructure.Business\Identity.Infrastructure.Business.csproj", "{DBD33C3F-6252-4E5F-8F59-709B86D957AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Infrastructure.Business", "src\Services\Identity\Infrastructure\Identity.Infrastructure.Business\Identity.Infrastructure.Business.csproj", "{DBD33C3F-6252-4E5F-8F59-709B86D957AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Infrastructure.Data", "src\Services\Identity\Infrastructure\Identity.Infrastructure.Data\Identity.Infrastructure.Data.csproj", "{99EC5B6E-6EC1-472B-B1DB-7D1BDA7D42F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Infrastructure.Data", "src\Services\Identity\Infrastructure\Identity.Infrastructure.Data\Identity.Infrastructure.Data.csproj", "{99EC5B6E-6EC1-472B-B1DB-7D1BDA7D42F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Services.Interfaces", "src\Services\Identity\Services\Identity.Services.Interfaces\Identity.Services.Interfaces.csproj", "{8869C948-E83D-4B0E-B5D9-2EBADC3F0BEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Services.Interfaces", "src\Services\Identity\Services\Identity.Services.Interfaces\Identity.Services.Interfaces.csproj", "{8869C948-E83D-4B0E-B5D9-2EBADC3F0BEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

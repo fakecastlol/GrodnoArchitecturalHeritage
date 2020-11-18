@@ -65,11 +65,7 @@
       "UpstreamPathTemplate": "/index",
       "UpstreamHttpMethod": [ "Get" ],
       "ReRoutesCaseSensitive": false,
-      "DangerousAcceptAnyServerCertificateValidator": false,
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": [ "Admin", "User" ]
-      }
+      "DangerousAcceptAnyServerCertificateValidator": false
     },
 
     {

@@ -16,7 +16,7 @@ namespace Web.Platform.HttpAggregator
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     config
-                        .AddJsonFile("ocelot.json");
+                        .AddJsonFile("Routes/ocelot.json");
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
