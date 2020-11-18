@@ -1,18 +1,24 @@
-using System;
-using System.Reflection;
 using AutoMapper;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Identity.Domain.Interfaces.Repositories;
 using Identity.Infrastructure.Business.Services;
 using Identity.Infrastructure.Data.EFContext;
 using Identity.Infrastructure.Data.Repositories;
 using Identity.Services.Interfaces.Contracts;
 using Identity.Services.Interfaces.Helpers;
+using Identity.Services.Interfaces.Models.User.Login;
+using Identity.Services.Interfaces.Models.User.Register;
+using Identity.Services.Interfaces.Validation.FluentValidation.Login;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Reflection;
+using Identity.Services.Interfaces.Validation.FluentValidation.Register;
 
 namespace Identity.API
 {
@@ -40,6 +46,15 @@ namespace Identity.API
             services.AddAutoMapper(Assembly.Load("Identity.Infrastructure.Business"), Assembly.Load("Identity.API"));
 
             services.AddScoped<IUserService, UserService>();
+
+            services.AddMvc(setup =>
+            {
+
+            }).AddFluentValidation();
+
+            services.AddTransient<IValidator<RegisterRequestModel>, RegisterValidator>();
+
+            services.AddTransient<IValidator<LoginRequestModel>, LoginValidator>();
 
             services.AddControllers();
         }

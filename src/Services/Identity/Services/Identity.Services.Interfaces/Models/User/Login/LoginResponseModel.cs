@@ -1,6 +1,6 @@
 ﻿namespace Identity.Services.Interfaces.Models.User.Login
 {
-    public class LoginResponseCoreModel
+    public class LoginResponseModel
     {
         public string Token { get; set; }
     }

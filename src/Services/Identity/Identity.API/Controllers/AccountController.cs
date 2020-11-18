@@ -52,7 +52,7 @@ namespace Identity.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginCoreModel viewModel)
+        public async Task<IActionResult> Login(LoginRequestModel viewModel)
         {
             if (ModelState.IsValid)
             {

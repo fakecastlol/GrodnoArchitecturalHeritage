@@ -5,7 +5,7 @@ namespace Identity.Services.Interfaces.Models.User.Register
     public class RegisterRequestModel
     {
         [Required(ErrorMessage = "Email not specified")]
-        [EmailAddress]
+        //[EmailAddress]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Password not specified")]

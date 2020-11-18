@@ -73,7 +73,7 @@ namespace Identity.Infrastructure.Business.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public async Task<LoginResponseCoreModel> AuthenticateAsync(LoginCoreModel loginCoreModel)
+        public async Task<LoginResponseModel> AuthenticateAsync(LoginRequestModel loginCoreModel)
         {
             var userEntity = await (await _userRepository.GetAllAsync(x =>
                     x.Email.Equals(loginCoreModel.Email)))
@@ -86,7 +86,7 @@ namespace Identity.Infrastructure.Business.Services
 
             var userCoreModel = _mapper.Map<UserResponseCoreModel>(userEntity);
             var token = GenerateJwtToken(userCoreModel);
-            var loginResponseModel = new LoginResponseCoreModel
+            var loginResponseModel = new LoginResponseModel
             {
                 Token = token
             };
