@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Identity.Domain.Core.Entities;
-using Identity.Services.Interfaces.Models;
+using Identity.Services.Interfaces.Models.User;
+using Identity.Services.Interfaces.Models.User.Login;
+using Identity.Services.Interfaces.Models.User.Register;
 
 namespace Identity.Infrastructure.Business.Support.Adapter
 {
@@ -8,17 +10,14 @@ namespace Identity.Infrastructure.Business.Support.Adapter
     {
         public AutoMapperProfile()
         {
-            CreateMap<UserEntity, UserCoreModel>();
-            CreateMap<UserCoreModel, UserEntity>();
-
-            CreateMap<UserEntity, RequestUserCoreModel>();
-            CreateMap<RegisterCoreModel, UserEntity>();
+            CreateMap<UserEntity, UserResponseCoreModel>();
+            CreateMap<UserResponseCoreModel, UserEntity>();
 
             CreateMap<UserEntity, RegisterCoreModel>();
             CreateMap<RegisterCoreModel, UserEntity>();
 
-            CreateMap<UserEntity, LoginCoreModel>();
-            CreateMap<UserCoreModel, UserEntity>();
+            CreateMap<UserEntity, LoginResponseCoreModel>();
+            CreateMap<LoginResponseCoreModel, UserEntity>();
         }
     }
 }

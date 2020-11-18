@@ -12,7 +12,7 @@ namespace Identity.Domain.Interfaces.Repositories.Generic
         Task<IQueryable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null);
 
-        Task<TEntity> GetIdAsync(int id);
+        Task<TEntity> GetByIdAsync(Guid id);
 
         Task<TEntity> CreateAsync(TEntity item);
         Task<TEntity> UpdateAsync(TEntity item);

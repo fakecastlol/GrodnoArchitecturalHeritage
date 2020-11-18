@@ -12,13 +12,13 @@ namespace Identity.API.Controllers
         public IActionResult Index()
         {
             string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
-            return Content($"ваша роль: {role}");
+            return Content($"your role: {role}");
         }
 
         [Authorize(Roles = "admin")]
         public IActionResult About()
         {
-            return Content("Вход только для администратора");
+            return Content("login only for administrator");
         }
     }
 }

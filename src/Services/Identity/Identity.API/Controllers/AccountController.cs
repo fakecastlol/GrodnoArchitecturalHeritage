@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using Identity.API.Models;
-using Identity.API.Models.AppViewModel;
 using Identity.Services.Interfaces.Contracts;
-using Identity.Services.Interfaces.Models;
+using Identity.Services.Interfaces.Models.User.Login;
+using Identity.Services.Interfaces.Models.User.Register;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -32,7 +31,7 @@ namespace Identity.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> Register(RegisterRequestModel model)
         {
             try
             {
@@ -53,17 +52,13 @@ namespace Identity.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginViewModel viewModel)
+        public async Task<IActionResult> Login(LoginCoreModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                var user = _mapper.Map<LoginCoreModel>(viewModel);
+                var loginResponseModel = await _userService.AuthenticateAsync(viewModel);
 
-                var userCoreModel = await _userService.AuthenticateAsync(user);
-
-                var result = _mapper.Map<UserViewModel>(userCoreModel);
-
-                return Ok(result);
+                return Ok(loginResponseModel);
             }
             return BadRequest(viewModel);
         }

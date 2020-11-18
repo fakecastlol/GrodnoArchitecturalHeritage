@@ -1,6 +1,9 @@
-﻿using Identity.Services.Interfaces.Models;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Identity.Services.Interfaces.Models.User;
+using Identity.Services.Interfaces.Models.User.Login;
+using Identity.Services.Interfaces.Models.User.Register;
 
 namespace Identity.Services.Interfaces.Contracts
 {
@@ -8,7 +11,7 @@ namespace Identity.Services.Interfaces.Contracts
     {
         Task<IEnumerable<UserResponseCoreModel>> GetAllAsync();
 
-        Task<UserResponseCoreModel> GetIdAsync(int id);
+        Task<UserResponseCoreModel> GetUserByIdAsync(Guid id);
 
         Task<LoginResponseCoreModel> AuthenticateAsync(LoginCoreModel loginCoreModel);
 

@@ -1,4 +1,7 @@
 {
+  "GlobalConfiguration": {
+
+  },
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/account/login",
@@ -15,21 +18,6 @@
       "DangerousAcceptAnyServerCertificateValidator": false
 
     },
-    {
-      "DownstreamPathTemplate": "/api/account/login",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "identity",
-          "Port": 5001
-        }
-      ],
-      "UpstreamPathTemplate": "/login",
-      "UpstreamHttpMethod": [ "Post" ],
-      "ReRoutesCaseSensitive": false,
-      "DangerousAcceptAnyServerCertificateValidator": false
-
-    },
 
     {
       "DownstreamPathTemplate": "/api/account/register",
@@ -45,21 +33,6 @@
       "ReRoutesCaseSensitive": false,
       "DangerousAcceptAnyServerCertificateValidator": false
     },
-    {
-      "DownstreamPathTemplate": "/api/account/register",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "identity",
-          "Port": 5001
-        }
-      ],
-      "UpstreamPathTemplate": "/register",
-      "UpstreamHttpMethod": [ "Post" ],
-      "ReRoutesCaseSensitive": false,
-      "DangerousAcceptAnyServerCertificateValidator": false
-    },
-
 
     {
       "DownstreamPathTemplate": "/api/account/users",
@@ -79,16 +52,36 @@
         "AllowedScopes": [ "Admin" ]
       }
     },
+
     {
-      "DownstreamPathTemplate": "/api/account/users",
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/api/home/index",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "identity",
-          "Port": 5001
+          "Port": 5000
         }
       ],
-      "UpstreamPathTemplate": "/users",
+      "UpstreamPathTemplate": "/index",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "Admin", "User" ]
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/home/about",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/about",
       "UpstreamHttpMethod": [ "Get" ],
       "ReRoutesCaseSensitive": false,
       "DangerousAcceptAnyServerCertificateValidator": false,

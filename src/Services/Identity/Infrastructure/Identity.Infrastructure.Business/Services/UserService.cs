@@ -3,7 +3,10 @@ using Identity.Domain.Core.Entities;
 using Identity.Domain.Interfaces.Repositories;
 using Identity.Services.Interfaces.Contracts;
 using Identity.Services.Interfaces.Helpers;
-using Identity.Services.Interfaces.Models;
+using Identity.Services.Interfaces.Models.Jwt;
+using Identity.Services.Interfaces.Models.User;
+using Identity.Services.Interfaces.Models.User.Login;
+using Identity.Services.Interfaces.Models.User.Register;
 using Identity.Services.Interfaces.Validation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -21,10 +24,10 @@ namespace Identity.Infrastructure.Business.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IJwtService _appSettings;
         private readonly IMapper _mapper;
-        private readonly JwtSettings _appSettings;
 
-        public UserService(IOptions<JwtSettings> appSettings, IUserRepository userRepository, IMapper mapper)
+        public UserService(IUserRepository userRepository, IOptions<JwtSettings> appSettings, IMapper mapper)
         {
             _userRepository = userRepository;
             _mapper = mapper;
@@ -38,9 +41,9 @@ namespace Identity.Infrastructure.Business.Services
             return result;
         }
 
-        public async Task<UserResponseCoreModel> GetIdAsync(int id)
+        public async Task<UserResponseCoreModel> GetUserByIdAsync(Guid id)
         {
-            var getEntity = await _userRepository.GetIdAsync(id);
+            var getEntity = await _userRepository.GetByIdAsync(id);
 
             var result = _mapper.Map<UserResponseCoreModel>(getEntity);
 
@@ -56,9 +59,9 @@ namespace Identity.Infrastructure.Business.Services
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim("id", user.Id.ToString()),
-                    new Claim("email", user.Email),
-                    new Claim("scope", user.Role.ToString()),
+                    new Claim(Claims.Id.ToString().ToLower(), user.Id.ToString()),
+                    new Claim(Claims.Email.ToString().ToLower(), user.Email),
+                    new Claim(Claims.Scope.ToString().ToLower(), user.Role.ToString()),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
@@ -83,7 +86,6 @@ namespace Identity.Infrastructure.Business.Services
 
             var userCoreModel = _mapper.Map<UserResponseCoreModel>(userEntity);
             var token = GenerateJwtToken(userCoreModel);
-
             var loginResponseModel = new LoginResponseCoreModel
             {
                 Token = token
