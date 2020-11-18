@@ -2,7 +2,6 @@
 using Identity.Domain.Core.Entities;
 using Identity.Domain.Interfaces.Repositories;
 using Identity.Services.Interfaces.Contracts;
-using Identity.Services.Interfaces.Contracts.Generic;
 using Identity.Services.Interfaces.Helpers;
 using Identity.Services.Interfaces.Models;
 using Identity.Services.Interfaces.Validation;
@@ -23,44 +22,32 @@ namespace Identity.Infrastructure.Business.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
-        private readonly AppSettings _appSettings;
+        private readonly JwtSettings _appSettings;
 
-        public UserService(IOptions<AppSettings> appSettings, IUserRepository userRepository, IMapper mapper)
+        public UserService(IOptions<JwtSettings> appSettings, IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _appSettings = appSettings.Value;
         }
 
-        public async Task<IEnumerable<RequestUserCoreModel>> GetAllAsync()
+        public async Task<IEnumerable<UserResponseCoreModel>> GetAllAsync()
         {
-            var result = _mapper.Map<IEnumerable<UserEntity>, IEnumerable<RequestUserCoreModel>>(await _userRepository.GetAllAsync());
+            var result = _mapper.Map<IEnumerable<UserEntity>, IEnumerable<UserResponseCoreModel>>(await _userRepository.GetAllAsync());
 
             return result;
         }
 
-        public async Task<UserCoreModel> GetIdAsync(int id)
+        public async Task<UserResponseCoreModel> GetIdAsync(int id)
         {
             var getEntity = await _userRepository.GetIdAsync(id);
 
-            var result = _mapper.Map<UserCoreModel>(getEntity);
+            var result = _mapper.Map<UserResponseCoreModel>(getEntity);
 
             return result;
         }
 
-        public Task<UserCoreModel> CreateAsync(UserCoreModel item)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public async Task<bool> IsUserExistAsync(LoginCoreModel model)
-        {
-            var user = await (await _userRepository.GetAllAsync(
-                x => x.Email.Equals(model.Email) && x.Password.Equals(model.Password))).AnyAsync();
-            return user;
-        }
-
-        private string GenerateJwtToken(UserCoreModel user)
+        private string GenerateJwtToken(UserResponseCoreModel user)
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -83,61 +70,64 @@ namespace Identity.Infrastructure.Business.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public async Task<UserCoreModel> Authenticate(LoginCoreModel loginCoreModel)
+        public async Task<LoginResponseCoreModel> AuthenticateAsync(LoginCoreModel loginCoreModel)
         {
-            // get account from database
-            var account = await (await _userRepository.GetAllAsync(x =>
+            var userEntity = await (await _userRepository.GetAllAsync(x =>
                     x.Email.Equals(loginCoreModel.Email)))
                 .FirstOrDefaultAsync();
-            // check account found and verify password
-            if (account == null || !BC.Verify(loginCoreModel.Password, account.Password))
+
+            if (userEntity == null || !BC.Verify(loginCoreModel.Password, userEntity.Password))
             {
-                // authentication failed
-                throw new ValidationException("", "");
+                throw new ValidationException("Incorrect account name or password", "");
             }
 
-            // authentication successful
-            var userCoreModel = _mapper.Map<UserCoreModel>(account);
-
+            var userCoreModel = _mapper.Map<UserResponseCoreModel>(userEntity);
             var token = GenerateJwtToken(userCoreModel);
 
-            userCoreModel.Token = token;
+            var loginResponseModel = new LoginResponseCoreModel
+            {
+                Token = token
+            };
 
-            return userCoreModel;
+            return loginResponseModel;
         }
 
-        public async Task<UserCoreModel> CreateAsync(RegisterCoreModel registerCoreModel)
+        public async Task<RegisterResponseModel> RegisterAsync(RegisterCoreModel registerCoreModel)
         {
-            var user = _mapper.Map<UserEntity>(registerCoreModel);
             var existingUser = await (await _userRepository.GetAllAsync(u => u.Email.Equals(registerCoreModel.Email)))
                 .FirstOrDefaultAsync();
             if (existingUser != null)
             {
-                throw new ValidationException($"User with email {user.Email} already exists", "");
+                throw new ValidationException($"User with email {registerCoreModel.Email} already exists", "");
             }
 
-            user.Role = Roles.User;
-            // hash password
-            user.Password = BC.HashPassword(registerCoreModel.Password);
+            var user = new UserEntity()
+            {
+                Email = registerCoreModel.Email,
+                Password = BC.HashPassword(registerCoreModel.Password),
+                Role = Roles.User
+            };
 
-            var createEntity = await _userRepository.CreateAsync(user);
-
-            var userCoreModel = _mapper.Map<UserCoreModel>(createEntity);
-
+            var createdUserEntity = await _userRepository.CreateAsync(user);
+            var userCoreModel = _mapper.Map<UserResponseCoreModel>(createdUserEntity);
             var token = GenerateJwtToken(userCoreModel);
 
-            userCoreModel.Token = token;
+            var registerResponseModel = new RegisterResponseModel()
+            {
+                Token = token,
+                User = userCoreModel
+            };
 
-            return userCoreModel;
+            return registerResponseModel;
         }
 
-        public async Task<UserCoreModel> UpdateAsync(UserCoreModel userCoreModel)
+        public async Task<UserResponseCoreModel> UpdateAsync(UserResponseCoreModel userCoreModel)
         {
             var user = _mapper.Map<UserEntity>(userCoreModel);
 
             var update = await _userRepository.UpdateAsync(user);
 
-            var result = _mapper.Map<UserCoreModel>(update);
+            var result = _mapper.Map<UserResponseCoreModel>(update);
 
             return result;
         }
@@ -145,11 +135,6 @@ namespace Identity.Infrastructure.Business.Services
         public async Task DeleteAsync(int id)
         {
             await _userRepository.DeleteAsync(id);
-        }
-
-        Task<IEnumerable<UserCoreModel>> IGenericService<UserCoreModel>.GetAllAsync()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -21,3 +21,11 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     volumes:
       - ~/.aspnet/https:/https:ro
+
+  dbUserService:
+    environment:
+        SA_PASSWORD: "Password_111ssassSsvc111"
+        ACCEPT_EULA: "Y"
+        MSSQL_PID: "Express"
+    ports: 
+        - 14330:1433

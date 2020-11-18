@@ -36,9 +36,9 @@ namespace Identity.API.Controllers
         {
             try
             {
-                var map = _mapper.Map<RegisterCoreModel>(model);
+                var registerCoreModel = _mapper.Map<RegisterCoreModel>(model);
 
-                var result = await _userService.CreateAsync(map);
+                var result = await _userService.RegisterAsync(registerCoreModel);
 
                 return Ok(result);
             }
@@ -59,36 +59,13 @@ namespace Identity.API.Controllers
             {
                 var user = _mapper.Map<LoginCoreModel>(viewModel);
 
-                //if (user != null)
-                //{
-                //    return Ok();
-                //}
-                //ModelState.AddModelError("", "Incorrect login or password");
-
-                var userCoreModel = await _userService.Authenticate(user);
+                var userCoreModel = await _userService.AuthenticateAsync(user);
 
                 var result = _mapper.Map<UserViewModel>(userCoreModel);
 
                 return Ok(result);
-                //await _userService.IsUserExistAsync(user);
-
             }
             return BadRequest(viewModel);
         }
-
-        //private async Task Authenticate(UserViewModel user)
-        //{
-        //    // create one claim
-        //    var claims = new List<Claim>
-        //    {
-        //        new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
-        //        new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name)
-        //    };
-        //    // create object ClaimsIdentity
-        //    ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
-        //        ClaimsIdentity.DefaultRoleClaimType);
-        //    // set authenticated cooks
-        //    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-        //}
     }
 }

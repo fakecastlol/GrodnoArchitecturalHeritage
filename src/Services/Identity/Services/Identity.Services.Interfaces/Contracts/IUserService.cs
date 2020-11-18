@@ -1,18 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using Identity.Services.Interfaces.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Identity.Services.Interfaces.Contracts.Generic;
-using Identity.Services.Interfaces.Models;
 
 namespace Identity.Services.Interfaces.Contracts
 {
-    public interface IUserService : IGenericService<UserCoreModel>
+    public interface IUserService
     {
-        Task<IEnumerable<RequestUserCoreModel>> GetAllAsync();
+        Task<IEnumerable<UserResponseCoreModel>> GetAllAsync();
 
-        Task<bool> IsUserExistAsync(LoginCoreModel model);
+        Task<UserResponseCoreModel> GetIdAsync(int id);
 
-        Task<UserCoreModel> Authenticate(LoginCoreModel loginCoreModel);
+        Task<LoginResponseCoreModel> AuthenticateAsync(LoginCoreModel loginCoreModel);
 
-        Task<UserCoreModel> CreateAsync(RegisterCoreModel registerCoreModel);
+        Task<RegisterResponseModel> RegisterAsync(RegisterCoreModel registerCoreModel);
+
+        Task<UserResponseCoreModel> UpdateAsync(UserResponseCoreModel item);
+
+        Task DeleteAsync(int id);
     }
 }
