@@ -11,6 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B9
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{887CBD3D-45D4-4807-B2B5-839509DF342D}"
+	ProjectSection(SolutionItems) = preProject
+		src\ApiGateways\Dockerfile = src\ApiGateways\Dockerfile
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Platform.HttpAggregator", "src\ApiGateways\Web.Platform.HttpAggregator\Web.Platform.HttpAggregator.csproj", "{BF6EC550-7349-4E48-88BF-06FF19334968}"
 EndProject

@@ -54,13 +54,13 @@ namespace Identity.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequestModel viewModel)
         {
-            if (ModelState.IsValid)
-            {
-                var loginResponseModel = await _userService.AuthenticateAsync(viewModel);
+            var loginResponseModel = await _userService.AuthenticateAsync(viewModel);
 
-                return Ok(loginResponseModel);
-            }
-            return BadRequest(viewModel);
+            if (loginResponseModel == null)
+                return BadRequest(new {message = "Username or password is incorrect."});
+
+
+            return Ok(loginResponseModel);
         }
     }
 }
