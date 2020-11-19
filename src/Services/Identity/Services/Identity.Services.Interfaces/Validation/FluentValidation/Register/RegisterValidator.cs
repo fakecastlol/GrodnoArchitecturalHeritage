@@ -14,7 +14,7 @@ namespace Identity.Services.Interfaces.Validation.FluentValidation.Register
             RuleFor(user => user.Password)
                 .NotEmpty().WithMessage("Password is required.")
                 .Matches("^(?=.*?[A - Z])(?=.*?[a - z])(?=.*?[0 - 9])(?=.*?[#?!@$%^&*-]).{8,}$")
-                .WithMessage("Incorrect format. Minimum length eight , at least one uppercase letter, one lowercase letter, one digit and one character.");
+                .WithMessage("Incorrect format. Minimum length 8, at least one uppercase letter, one lowercase letter, one digit and one character.");
 
             RuleFor(user => user.ConfirmPassword)
                 .NotEmpty().WithMessage("Confirm Password is required.");
