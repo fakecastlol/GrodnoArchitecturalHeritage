@@ -8,13 +8,11 @@ namespace Identity.Services.Interfaces.Validation.FluentValidation.Login
         public LoginValidator()
         {
             RuleFor(user => user.Email)
-                .NotEmpty()
-                .NotNull()
-                .EmailAddress();
+                .NotEmpty().WithMessage("Email is required.")
+                .EmailAddress().WithMessage("Invalid email format");
 
             RuleFor(user => user.Password)
-                .NotEmpty()
-                .NotNull();
+                .NotEmpty().WithMessage("Password is required.");
         }
     }
 }
