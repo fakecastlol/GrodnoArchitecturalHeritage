@@ -50,7 +50,7 @@ namespace Identity.Infrastructure.Business.Services
             return result;
         }
 
-        private string GenerateJwtToken(UserResponseCoreModel user)
+        private async Task<string> GenerateJwtToken(UserResponseCoreModel user)
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -69,7 +69,7 @@ namespace Identity.Infrastructure.Business.Services
                 Issuer = "http://jwtauthzsrv.azurewebsites.net"
 
             };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
+            var token = await Task.Run(() => tokenHandler.CreateToken(tokenDescriptor));
             return tokenHandler.WriteToken(token);
         }
 
@@ -85,7 +85,7 @@ namespace Identity.Infrastructure.Business.Services
             }
 
             var userCoreModel = _mapper.Map<UserResponseCoreModel>(userEntity);
-            var token = GenerateJwtToken(userCoreModel);
+            var token = await GenerateJwtToken(userCoreModel);
             var loginResponseModel = new LoginResponseModel
             {
                 Token = token
@@ -112,7 +112,7 @@ namespace Identity.Infrastructure.Business.Services
 
             var createdUserEntity = await _userRepository.CreateAsync(user);
             var userCoreModel = _mapper.Map<UserResponseCoreModel>(createdUserEntity);
-            var token = GenerateJwtToken(userCoreModel);
+            var token = await GenerateJwtToken(userCoreModel);
 
             var registerResponseModel = new RegisterResponseModel()
             {
