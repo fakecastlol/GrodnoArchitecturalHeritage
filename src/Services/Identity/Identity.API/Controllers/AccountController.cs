@@ -24,7 +24,7 @@ namespace Identity.API.Controllers
         }
 
         [HttpGet("users")]
-        public async Task<IActionResult> Register()
+        public async Task<IActionResult> GetUsers()
         {
             var users = await _userService.GetAllAsync();
             return Ok(users);

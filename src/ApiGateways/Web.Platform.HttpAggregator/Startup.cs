@@ -37,7 +37,18 @@ namespace Web.Platform.HttpAggregator
                 };
             });
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
             services.AddOcelot(Configuration);
+
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -49,14 +60,16 @@ namespace Web.Platform.HttpAggregator
 
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            //app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
 
             app.UseOcelot().Wait();
         }
