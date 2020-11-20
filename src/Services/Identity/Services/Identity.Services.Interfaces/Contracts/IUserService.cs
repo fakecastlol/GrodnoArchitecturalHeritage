@@ -2,6 +2,7 @@
 using Identity.Services.Interfaces.Models.User.Login;
 using Identity.Services.Interfaces.Models.User.Register;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace Identity.Services.Interfaces.Contracts
 {
     public interface IUserService
     {
-        Task<IQueryable<UserResponseCoreModel>> GetAllAsync();
+        Task<List<UserResponseCoreModel>> GetAllAsync();
 
         Task<UserResponseCoreModel> GetUserByIdAsync(Guid id);
 

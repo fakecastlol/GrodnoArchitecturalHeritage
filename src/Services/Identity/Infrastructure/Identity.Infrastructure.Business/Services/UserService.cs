@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -34,9 +35,9 @@ namespace Identity.Infrastructure.Business.Services
             _appSettings = appSettings.Value;
         }
 
-        public async Task<IQueryable<UserResponseCoreModel>> GetAllAsync()
+        public async Task<List<UserResponseCoreModel>> GetAllAsync()
         {
-            var result = _mapper.Map<IQueryable<UserEntity>, IQueryable<UserResponseCoreModel>>(await _userRepository.GetAllAsync());
+            var result = _mapper.Map<IQueryable<UserEntity>, List<UserResponseCoreModel>>(await _userRepository.GetAllAsync());
 
             return result;
         }
