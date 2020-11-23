@@ -14,7 +14,7 @@ namespace Identity.Services.Interfaces.Contracts
 
         Task<UserResponseCoreModel> GetUserByIdAsync(Guid id);
 
-        Task<LoginResponseModel> AuthenticateAsync(LoginRequestModel loginCoreModel);
+        Task<RegisterResponseModel> AuthenticateAsync(LoginRequestModel loginCoreModel);
 
         Task<RegisterResponseModel> RegisterAsync(RegisterCoreModel registerCoreModel);
 
