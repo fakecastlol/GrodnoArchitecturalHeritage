@@ -16,6 +16,6 @@ namespace Identity.Domain.Interfaces.Repositories.Generic
 
         Task<TEntity> CreateAsync(TEntity item);
         Task<TEntity> UpdateAsync(TEntity item);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Guid id);
     }
 }

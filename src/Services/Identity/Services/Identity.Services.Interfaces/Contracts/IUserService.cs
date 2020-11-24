@@ -3,7 +3,6 @@ using Identity.Services.Interfaces.Models.User.Login;
 using Identity.Services.Interfaces.Models.User.Register;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Identity.Services.Interfaces.Contracts
@@ -14,12 +13,14 @@ namespace Identity.Services.Interfaces.Contracts
 
         Task<UserResponseCoreModel> GetUserByIdAsync(Guid id);
 
+        Task<UserResponseCoreModel> SetUserRole(UserResponseCoreModel userResponseCoreModel);
+
         Task<RegisterResponseModel> AuthenticateAsync(LoginRequestModel loginCoreModel);
 
         Task<RegisterResponseModel> RegisterAsync(RegisterCoreModel registerCoreModel);
 
         Task<UserResponseCoreModel> UpdateAsync(UserResponseCoreModel item);
 
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Guid id);
     }
 }

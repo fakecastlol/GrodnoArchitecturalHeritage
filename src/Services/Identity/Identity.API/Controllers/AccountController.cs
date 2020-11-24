@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Identity.Services.Interfaces.Models.User;
+using Identity.Services.Interfaces.Models.User.Abstract;
 
 namespace Identity.API.Controllers
 {
@@ -62,5 +64,35 @@ namespace Identity.API.Controllers
 
             return Ok(loginResponseModel);
         }
+
+        [HttpGet("role")]
+        public async Task<IActionResult> SetRole(Guid id)
+        {
+            var user = await _userService.GetUserByIdAsync(id);
+
+            if (user == null)
+                return BadRequest(new {message = "User is not found."});
+
+            return Ok(user);
+        }
+
+        [HttpPost("role")]
+        public async Task<IActionResult> SetRole(UserResponseCoreModel model)
+        {
+            var setRole = await _userService.SetUserRole(model);
+            if (model == null)
+                return BadRequest(new { message = "User is not found." });
+
+            return Ok(setRole);
+        }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteUser(CoreModel user)
+        {
+            await _userService.DeleteAsync(user.Id);
+
+            return Ok();
+        }
+
     }
 }

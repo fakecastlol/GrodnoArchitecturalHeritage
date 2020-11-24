@@ -51,6 +51,19 @@ namespace Identity.Infrastructure.Business.Services
             return result;
         }
 
+        public async Task<UserResponseCoreModel> SetUserRole(UserResponseCoreModel userResponseCoreModel)
+        {
+            //var user = await GetUserByIdAsync(id);
+            var setRole = await _userRepository.UpdateAsync(new UserEntity()
+            {
+                Role = userResponseCoreModel.Role
+            });
+
+            var result = _mapper.Map<UserResponseCoreModel>(setRole);
+
+            return result;
+        }
+
         private string GenerateJwtToken(UserResponseCoreModel user)
         {
             // generate token that is valid for 7 days
@@ -136,7 +149,7 @@ namespace Identity.Infrastructure.Business.Services
             return result;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
             await _userRepository.DeleteAsync(id);
         }

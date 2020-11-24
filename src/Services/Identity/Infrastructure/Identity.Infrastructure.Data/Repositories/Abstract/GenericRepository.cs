@@ -1,4 +1,5 @@
-﻿using Identity.Domain.Interfaces.Repositories.Generic;
+﻿using Identity.Domain.Core.Entities.Abstract;
+using Identity.Domain.Interfaces.Repositories.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace Identity.Infrastructure.Data.Repositories.Abstract
 {
     public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity>
-        where TEntity : class
+        where TEntity : BaseEntity
     {
         protected readonly DbContext _context;
 
@@ -58,12 +59,14 @@ namespace Identity.Infrastructure.Data.Repositories.Abstract
             return entityEntry.Entity;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
-            TEntity item = _dbSet.Find(id);
+            var item = await _dbSet.FindAsync(id);
 
             if (item != null)
+            {
                 _dbSet.Remove(item);
+            }
 
             await SaveAsync();
         }
