@@ -16,7 +16,6 @@
       "UpstreamHttpMethod": [ "Post" ],
       "ReRoutesCaseSensitive": false,
       "DangerousAcceptAnyServerCertificateValidator": false
-
     },
 
     {
@@ -79,6 +78,39 @@
       ],
       "UpstreamPathTemplate": "/about",
       "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/account/role",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/role",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "Admin" ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/account/delete",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/delete",
+      "UpstreamHttpMethod": [ "Delete" ],
       "ReRoutesCaseSensitive": false,
       "DangerousAcceptAnyServerCertificateValidator": false,
       "AuthenticationOptions": {
