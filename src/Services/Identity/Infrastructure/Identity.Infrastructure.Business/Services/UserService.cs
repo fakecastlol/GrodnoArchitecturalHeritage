@@ -4,6 +4,7 @@ using Identity.Domain.Interfaces.Repositories;
 using Identity.Services.Interfaces.Contracts;
 using Identity.Services.Interfaces.Helpers;
 using Identity.Services.Interfaces.Models.Jwt;
+using Identity.Services.Interfaces.Models.Pagination;
 using Identity.Services.Interfaces.Models.User;
 using Identity.Services.Interfaces.Models.User.Login;
 using Identity.Services.Interfaces.Models.User.Register;
@@ -42,6 +43,17 @@ namespace Identity.Infrastructure.Business.Services
             return result;
         }
 
+        public async Task<PaginatedList<UserResponseCoreModel>> GetUsingPaginationAsync(int pageNumber, int pageSize)
+        {
+            var fullUserList = await _userRepository.GetAllAsync();
+
+            var paginatedUserList = PaginatedList<UserEntity>.CreateAsync(fullUserList, pageNumber, pageSize);
+
+            var userResponseCoreModelList = _mapper.Map<PaginatedList<UserEntity>, PaginatedList<UserResponseCoreModel>>(paginatedUserList);
+
+            return userResponseCoreModelList;
+        }
+
         public async Task<UserResponseCoreModel> GetUserByIdAsync(Guid id)
         {
             var getEntity = await _userRepository.GetByIdAsync(id);
@@ -76,6 +88,9 @@ namespace Identity.Infrastructure.Business.Services
                     new Claim(Claims.Id.ToString().ToLower(), user.Id.ToString()),
                     new Claim(Claims.Email.ToString().ToLower(), user.Email),
                     new Claim(Claims.Scope.ToString().ToLower(), user.Role.ToString()),
+                    new Claim(Claims.FirstName.ToString().ToLower(), /*user.FirstName*/"undefined"),
+                    new Claim(Claims.LastName.ToString().ToLower(), /*user.LastName*/"undefined"),
+                    new Claim(Claims.Login.ToString().ToLower(), /*user.Login*/"undefined"),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
@@ -97,6 +112,8 @@ namespace Identity.Infrastructure.Business.Services
             {
                 throw new ValidationException("Incorrect account name or password", "");
             }
+
+            userEntity.LastVisited = DateTime.Now;
 
             var userCoreModel = _mapper.Map<UserResponseCoreModel>(userEntity);
             var token = GenerateJwtToken(userCoreModel);
@@ -122,10 +139,12 @@ namespace Identity.Infrastructure.Business.Services
             {
                 Email = registerCoreModel.Email,
                 Password = BC.HashPassword(registerCoreModel.Password),
-                Role = Roles.User
+                Role = Roles.User,
+                RegistrationDate = DateTime.Now
             };
 
             var createdUserEntity = await _userRepository.CreateAsync(user);
+
             var userCoreModel = _mapper.Map<UserResponseCoreModel>(createdUserEntity);
             var token = GenerateJwtToken(userCoreModel);
 

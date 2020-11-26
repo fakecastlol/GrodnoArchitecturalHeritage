@@ -1,4 +1,6 @@
-﻿namespace Identity.Services.Interfaces.Models.User.Register
+﻿using System;
+
+namespace Identity.Services.Interfaces.Models.User.Register
 {
     public class RegisterCoreModel
     {

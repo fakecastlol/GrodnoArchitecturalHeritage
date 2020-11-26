@@ -25,6 +25,15 @@ namespace Identity.API.Controllers
             _mapper = mapper;
         }
 
+
+        [HttpGet("pusers")]
+        public async Task<IActionResult> Index(int? page, int? pageSize)
+        {
+            var users = await _userService.GetUsingPaginationAsync(page ?? 1, pageSize ?? 10);
+
+            return Ok(users);
+        }
+
         [HttpGet("users")]
         public async Task<IActionResult> GetUsers()
         {
@@ -92,6 +101,14 @@ namespace Identity.API.Controllers
             await _userService.DeleteAsync(user.Id);
 
             return Ok();
+        }
+
+        [HttpGet("getuser")]
+        public async Task<IActionResult> GetUser([FromQuery]CoreModel user)
+        {
+            var result = await _userService.GetUserByIdAsync(user.Id);
+
+            return Ok(result);
         }
 
     }

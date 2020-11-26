@@ -22,6 +22,12 @@ namespace Identity.Infrastructure.Data.Repositories.Abstract
             _dbSet = context.Set<TEntity>();
         }
 
+
+        //public async Task<IPagedList<UserEntity>> GetUsingPaginationAsync(int pageNumber, int pageSize)
+        //{
+        //    return await Task.Run(() => _dbSet.);
+        //}
+
         public async Task<IQueryable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null)
         {

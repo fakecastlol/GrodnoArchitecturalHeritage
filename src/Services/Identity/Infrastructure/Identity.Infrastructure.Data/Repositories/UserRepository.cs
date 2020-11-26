@@ -9,6 +9,7 @@ namespace Identity.Infrastructure.Data.Repositories
     {
         public UserRepository(DbContext context) : base(context)
         {
+
         }
     }
 }
