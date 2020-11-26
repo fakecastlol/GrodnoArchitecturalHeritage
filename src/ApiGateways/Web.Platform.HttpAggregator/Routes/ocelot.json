@@ -117,6 +117,39 @@
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": [ "Admin" ]
       }
+    },
+    {
+      "DownstreamPathTemplate": "/api/account/pusers",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/pusers",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "Admin" ]
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/account/getuser",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/getuser",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
     }
   ],
 
