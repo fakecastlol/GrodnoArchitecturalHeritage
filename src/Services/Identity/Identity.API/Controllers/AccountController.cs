@@ -74,19 +74,19 @@ namespace Identity.API.Controllers
             return Ok(loginResponseModel);
         }
 
-        [HttpGet("role")]
-        public async Task<IActionResult> SetRole(Guid id)
-        {
-            var user = await _userService.GetUserByIdAsync(id);
+        //[HttpGet("role")]
+        //public async Task<IActionResult> SetRole(Guid id)
+        //{
+        //    var user = await _userService.GetUserByIdAsync(id);
 
-            if (user == null)
-                return BadRequest(new {message = "User is not found."});
+        //    if (user == null)
+        //        return BadRequest(new {message = "User is not found."});
 
-            return Ok(user);
-        }
+        //    return Ok(user);
+        //}
 
         [HttpPost("role")]
-        public async Task<IActionResult> SetRole(UserResponseCoreModel model)
+        public async Task<IActionResult> SetRole(SetRoleRequestModel model)
         {
             var setRole = await _userService.SetUserRole(model);
             if (model == null)

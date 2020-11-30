@@ -92,7 +92,7 @@
         }
       ],
       "UpstreamPathTemplate": "/role",
-      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "UpstreamHttpMethod": [ "Post" ],
       "ReRoutesCaseSensitive": false,
       "DangerousAcceptAnyServerCertificateValidator": false,
       "AuthenticationOptions": {

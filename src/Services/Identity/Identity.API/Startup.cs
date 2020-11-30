@@ -39,7 +39,7 @@ namespace Identity.API
 
             services.Configure<JwtSettings>(Configuration.GetSection("JwtKey"));
 
-            services.AddTransient<DbContext, UserContext>();
+            services.AddScoped<DbContext, UserContext>();
 
             services.AddTransient<IUserRepository, UserRepository>();
 

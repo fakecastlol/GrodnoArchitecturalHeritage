@@ -63,13 +63,12 @@ namespace Identity.Infrastructure.Business.Services
             return result;
         }
 
-        public async Task<UserResponseCoreModel> SetUserRole(UserResponseCoreModel userResponseCoreModel)
+        public async Task<UserResponseCoreModel> SetUserRole(SetRoleRequestModel requestModel)
         {
-            //var user = await GetUserByIdAsync(id);
-            var setRole = await _userRepository.UpdateAsync(new UserEntity()
-            {
-                Role = userResponseCoreModel.Role
-            });
+            var user = await _userRepository.GetByIdAsync(requestModel.Id);
+            user.Role = requestModel.Role;
+
+            var setRole = await _userRepository.UpdateAsync(user);
 
             var result = _mapper.Map<UserResponseCoreModel>(setRole);
 
@@ -155,6 +154,11 @@ namespace Identity.Infrastructure.Business.Services
             };
 
             return registerResponseModel;
+        }
+
+        public Task<UserResponseCoreModel> UpdateAsync(SetRoleRequestModel item)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<UserResponseCoreModel> UpdateAsync(UserResponseCoreModel userCoreModel)
