@@ -7,7 +7,6 @@ namespace Identity.Services.Interfaces.Models.User
     public class UserResponseCoreModel : CoreModel
     {
         public string Email { get; set; }
-
         public Roles Role { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
