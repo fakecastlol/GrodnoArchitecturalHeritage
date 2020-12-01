@@ -67,7 +67,7 @@ namespace Identity.Infrastructure.Business.Services
         {
             var user = await _userRepository.GetByIdAsync(requestModel.Id);
             user.Role = requestModel.Role;
-
+            
             var setRole = await _userRepository.UpdateAsync(user);
 
             var result = _mapper.Map<UserResponseCoreModel>(setRole);
@@ -164,6 +164,36 @@ namespace Identity.Infrastructure.Business.Services
         public async Task<UserResponseCoreModel> UpdateAsync(UserResponseCoreModel userCoreModel)
         {
             var user = _mapper.Map<UserEntity>(userCoreModel);
+
+            var update = await _userRepository.UpdateAsync(user);
+
+            var result = _mapper.Map<UserResponseCoreModel>(update);
+
+            return result;
+        }
+
+        public async Task<UserResponseCoreModel> UpdateProfileAsync(ProfileRequestModel profileRequestModel)
+        {
+            var user = await _userRepository.GetByIdAsync(profileRequestModel.Id);
+
+            user.Email = profileRequestModel.Email;
+            user.FirstName = profileRequestModel.FirstName;
+            user.LastName = profileRequestModel.LastName;
+            user.Login = profileRequestModel.Login;
+            user.Location = profileRequestModel.Location;
+
+            var update = await _userRepository.UpdateAsync(user);
+
+            var result = _mapper.Map<UserResponseCoreModel>(update);
+
+            return result;
+        }
+
+        public async Task<UserResponseCoreModel> UpdateImageAsync(ImageRequestModel imageRequestModel)
+        {
+            var user = await _userRepository.GetByIdAsync(imageRequestModel.Id);
+
+            user.Avatar = imageRequestModel.Avatar;
 
             var update = await _userRepository.UpdateAsync(user);
 

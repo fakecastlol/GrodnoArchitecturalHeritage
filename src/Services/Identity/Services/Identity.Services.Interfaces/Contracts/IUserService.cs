@@ -18,6 +18,10 @@ namespace Identity.Services.Interfaces.Contracts
 
         Task<UserResponseCoreModel> SetUserRole(SetRoleRequestModel userResponseCoreModel);
 
+        Task<UserResponseCoreModel> UpdateProfileAsync(ProfileRequestModel profileRequestModel);
+
+        Task<UserResponseCoreModel> UpdateImageAsync(ImageRequestModel imageRequestModel);
+
         Task<RegisterResponseModel> AuthenticateAsync(LoginRequestModel loginCoreModel);
 
         Task<RegisterResponseModel> RegisterAsync(RegisterCoreModel registerCoreModel);
