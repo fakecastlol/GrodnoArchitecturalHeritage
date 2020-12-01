@@ -150,6 +150,26 @@
       "UpstreamHttpMethod": [ "Get" ],
       "ReRoutesCaseSensitive": false,
       "DangerousAcceptAnyServerCertificateValidator": false
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/api/account/updateprofile",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/updateprofile",
+      "UpstreamHttpMethod": [ "Post" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "Admin", "User" ]
+      }
     }
   ],
 
