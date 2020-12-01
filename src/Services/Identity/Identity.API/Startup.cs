@@ -33,7 +33,7 @@ namespace Identity.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DbConnection");
+            var connection = Configuration.GetConnectionString("DbConnection");
 
             services.AddDbContext<UserContext>(options => options.UseSqlServer(connection));
 
