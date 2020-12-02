@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Identity.Infrastructure.Data\Identity.Infrastructure.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 </Project>

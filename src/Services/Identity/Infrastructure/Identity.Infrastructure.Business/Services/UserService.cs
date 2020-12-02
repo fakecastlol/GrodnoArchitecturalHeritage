@@ -15,10 +15,13 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Identity.Domain.Core.Entities.Enums;
+using Microsoft.AspNetCore.Hosting;
 using BC = BCrypt.Net.BCrypt;
 
 namespace Identity.Infrastructure.Business.Services
@@ -28,12 +31,14 @@ namespace Identity.Infrastructure.Business.Services
         private readonly IUserRepository _userRepository;
         private readonly JwtSettings _appSettings;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public UserService(IUserRepository userRepository, IOptions<JwtSettings> appSettings, IMapper mapper)
+        public UserService(IUserRepository userRepository, IOptions<JwtSettings> appSettings, IMapper mapper, IWebHostEnvironment hostEnvironment)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _appSettings = appSettings.Value;
+            _hostEnvironment = hostEnvironment;
         }
 
         public async Task<List<UserResponseCoreModel>> GetAllAsync()
@@ -111,7 +116,7 @@ namespace Identity.Infrastructure.Business.Services
             {
                 throw new ValidationException("Incorrect account name or password", "");
             }
-
+            
             userEntity.LastVisited = DateTime.Now;
 
             var userCoreModel = _mapper.Map<UserResponseCoreModel>(userEntity);
@@ -121,6 +126,7 @@ namespace Identity.Infrastructure.Business.Services
                 Token = token,
                 User = userCoreModel
             };
+            await _userRepository.UpdateAsync(userEntity);
 
             return loginResponseModel;
         }
@@ -193,7 +199,7 @@ namespace Identity.Infrastructure.Business.Services
         {
             var user = await _userRepository.GetByIdAsync(imageRequestModel.Id);
 
-            user.Avatar = imageRequestModel.Avatar;
+            user.Avatar = await SaveImageAsync(imageRequestModel);
 
             var update = await _userRepository.UpdateAsync(user);
 
@@ -201,6 +207,22 @@ namespace Identity.Infrastructure.Business.Services
 
             return result;
         }
+
+
+        public async Task<string> SaveImageAsync(ImageRequestModel imageRequestModel)
+        {
+            var imageName = new String(Path.GetFileNameWithoutExtension(imageRequestModel.Id.ToString()).Take(10).ToArray()).Replace(' ', '-');
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageRequestModel.File.Name);
+
+            var imagePath =  "../files/" + imageName; //Path.Combine(_hostEnvironment.WebRootPath,"./files/"/* "./Services/Identity/Identity.API/wwwroot/Images/"*/, imageName);
+
+            await using var fileStream = new FileStream(imagePath, FileMode.Create);
+
+            await imageRequestModel.File.CopyToAsync(fileStream);
+
+            return imagePath;
+        }
+
 
         public async Task DeleteAsync(Guid id)
         {

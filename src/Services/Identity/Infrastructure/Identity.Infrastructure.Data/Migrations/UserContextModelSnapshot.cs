@@ -41,7 +41,7 @@ namespace Identity.Infrastructure.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LastVisited")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2(0)");
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
@@ -59,7 +59,7 @@ namespace Identity.Infrastructure.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("RegistrationDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2(0)");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");

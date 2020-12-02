@@ -1,9 +1,10 @@
 ﻿using Identity.Services.Interfaces.Models.User.Abstract;
+using Microsoft.AspNetCore.Http;
 
 namespace Identity.Services.Interfaces.Models.User
 {
     public class ImageRequestModel : CoreModel
     {
-        public string Avatar { get; set; }
+        public IFormFile File { get; set; }
     }
 }

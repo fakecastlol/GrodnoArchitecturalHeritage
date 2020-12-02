@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Identity.Domain.Core.Entities;
+using Identity.Domain.Core.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
