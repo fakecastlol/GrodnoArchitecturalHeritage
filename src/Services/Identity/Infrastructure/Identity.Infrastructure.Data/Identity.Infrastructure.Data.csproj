@@ -5,6 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201202160744_change_column_type.cs" />
+    <Compile Remove="Migrations\20201202160744_change_column_type.Designer.cs" />
+    <Compile Remove="Migrations\20201202161205_change_column_type2.cs" />
+    <Compile Remove="Migrations\20201202161205_change_column_type2.Designer.cs" />
+    <Compile Remove="Migrations\20201202161619_change_column_type3.cs" />
+    <Compile Remove="Migrations\20201202161619_change_column_type3.Designer.cs" />
+    <Compile Remove="Migrations\20201202161736_column_type_change.cs" />
+    <Compile Remove="Migrations\20201202161736_column_type_change.Designer.cs" />
+    <Compile Remove="Migrations\20201202161848_column_type_change.cs" />
+    <Compile Remove="Migrations\20201202161848_column_type_change.Designer.cs" />
+    <Compile Remove="Migrations\20201202162009_column_type_change2.cs" />
+    <Compile Remove="Migrations\20201202162009_column_type_change2.Designer.cs" />
+    <Compile Remove="Migrations\20201202162345_column_type_change.cs" />
+    <Compile Remove="Migrations\20201202162345_column_type_change.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.10">
       <PrivateAssets>all</PrivateAssets>
