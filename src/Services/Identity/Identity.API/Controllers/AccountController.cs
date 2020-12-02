@@ -126,19 +126,9 @@ namespace Identity.API.Controllers
             return Ok(updateProfile);
         }
 
-        public async Task<IActionResult> UploadFile(IFormFile ifile, ImageRequestModel model)
+        [HttpPost("updatepic")]
+        public async Task<IActionResult> UploadFile([FromForm]ImageRequestModel model)
         {
-            var imgext = Path.GetExtension(ifile.FileName);
-            if (imgext == ".jpg" || imgext == ".gif")
-            {
-                var saveimg = Path.Combine(_webHost.WebRootPath, "Images", ifile.Name);
-                var stream = new FileStream(saveimg, FileMode.Create);
-                await ifile.CopyToAsync(stream);
-
-                model.Avatar = saveimg;
-            }
-
-
             var updateImage = await _userService.UpdateImageAsync(model);
             if (model == null)
                 return BadRequest(new { message = "User is not found" });
