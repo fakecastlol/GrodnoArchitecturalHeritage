@@ -1,5 +1,7 @@
 ﻿using Identity.Domain.Core.Entities.Abstract;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using Identity.Domain.Core.Entities.Enums;
 
 namespace Identity.Domain.Core.Entities
 {
@@ -11,7 +13,9 @@ namespace Identity.Domain.Core.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Login { get; set; }
+        [Column(TypeName = "datetime2(0)")]
         public DateTime RegistrationDate { get; set; }
+        [Column(TypeName = "datetime2(0)")]
         public DateTime LastVisited { get; set; }
         public string Location { get; set; }
         public int ArticleCount { get; set; }
