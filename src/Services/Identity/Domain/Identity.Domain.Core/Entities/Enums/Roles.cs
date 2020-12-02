@@ -1,4 +1,4 @@
-﻿namespace Identity.Domain.Core.Entities
+﻿namespace Identity.Domain.Core.Entities.Enums
 {
     public enum Roles
     {
