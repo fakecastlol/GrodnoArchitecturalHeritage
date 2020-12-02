@@ -170,6 +170,25 @@
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": [ "Admin", "User" ]
       }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/account/updatepic",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/updatepic",
+      "UpstreamHttpMethod": [ "Post" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "Admin", "User" ]
+      }
     }
   ],
 
