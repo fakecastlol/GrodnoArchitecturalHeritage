@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0DCA2E42-3C78-45CD-AF8A-BA569F8F57CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B9F19542-203A-476B-A94C-FFF016730066}"
-	ProjectSection(SolutionItems) = preProject
-		src\Services\Identity\Dockerfile = src\Services\Identity\Dockerfile
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{887CBD3D-45D4-4807-B2B5-839509DF342D}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,6 +15,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Platform.HttpAggregator", "src\ApiGateways\Web.Platform.HttpAggregator\Web.Platform.HttpAggregator.csproj", "{BF6EC550-7349-4E48-88BF-06FF19334968}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{64A22F18-976E-4FAD-B414-4756870D7CA1}"
+	ProjectSection(SolutionItems) = preProject
+		src\Services\Identity\Dockerfile = src\Services\Identity\Dockerfile
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.API", "src\Services\Identity\Identity.API\Identity.API.csproj", "{CE5934DE-FB09-4CCC-9B32-1F478E82DA09}"
 EndProject
@@ -38,6 +38,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Infrastructure.Data", "src\Services\Identity\Infrastructure\Identity.Infrastructure.Data\Identity.Infrastructure.Data.csproj", "{99EC5B6E-6EC1-472B-B1DB-7D1BDA7D42F5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity.Services.Interfaces", "src\Services\Identity\Services\Identity.Services.Interfaces\Identity.Services.Interfaces.csproj", "{8869C948-E83D-4B0E-B5D9-2EBADC3F0BEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Heritage", "Heritage", "{2CFF306F-3B53-45A2-A3FE-31FB854A431C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{D8245ECF-CBAF-4B77-9CFC-0B6FD6864951}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heritage.Domain.Core", "src\Services\Heritage\Domain\Heritage.Domain.Core\Heritage.Domain.Core.csproj", "{670AECB4-423F-44DA-BE63-A799C7A97159}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +83,10 @@ Global
 		{8869C948-E83D-4B0E-B5D9-2EBADC3F0BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8869C948-E83D-4B0E-B5D9-2EBADC3F0BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8869C948-E83D-4B0E-B5D9-2EBADC3F0BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{670AECB4-423F-44DA-BE63-A799C7A97159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{670AECB4-423F-44DA-BE63-A799C7A97159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{670AECB4-423F-44DA-BE63-A799C7A97159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{670AECB4-423F-44DA-BE63-A799C7A97159}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +105,9 @@ Global
 		{DBD33C3F-6252-4E5F-8F59-709B86D957AE} = {C37ADBB1-537E-44AE-B02B-B286BC60E14F}
 		{99EC5B6E-6EC1-472B-B1DB-7D1BDA7D42F5} = {C37ADBB1-537E-44AE-B02B-B286BC60E14F}
 		{8869C948-E83D-4B0E-B5D9-2EBADC3F0BEF} = {5FD99E7F-5DB2-4F23-BA89-85AB844911BB}
+		{2CFF306F-3B53-45A2-A3FE-31FB854A431C} = {B9F19542-203A-476B-A94C-FFF016730066}
+		{D8245ECF-CBAF-4B77-9CFC-0B6FD6864951} = {2CFF306F-3B53-45A2-A3FE-31FB854A431C}
+		{670AECB4-423F-44DA-BE63-A799C7A97159} = {D8245ECF-CBAF-4B77-9CFC-0B6FD6864951}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8618BDEA-68A0-44F6-818D-17A1F6065088}
