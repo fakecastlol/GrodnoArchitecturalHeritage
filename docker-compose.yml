@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   gateway:
-    depends_on: [identity]
+    depends_on: [identity, heritage]
     image: gateway:latest
     container_name: gateway
     restart: always
@@ -16,8 +16,14 @@ services:
     build:
       context: src/Services/Identity
 
-  dbUserService:
-        image: mcr.microsoft.com/mssql/server:2019-latest
-        container_name: dbUserService
-        restart: always
+  dbContainer:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: dbContainer
+    restart: always
         
+  heritage:
+    image: heritage:latest
+    container_name: heritage
+    restart: always
+    build:
+      context: src/Services/Heritage
