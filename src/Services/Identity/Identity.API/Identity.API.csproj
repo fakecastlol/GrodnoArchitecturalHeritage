@@ -25,9 +25,5 @@
     <ProjectReference Include="..\Services\Identity.Services.Interfaces\Identity.Services.Interfaces.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\Images\" />
-  </ItemGroup>
-
 
 </Project>
