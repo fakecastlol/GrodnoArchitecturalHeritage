@@ -1,6 +1,8 @@
+using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Ocelot.DependencyInjection;
 
 namespace Web.Platform.HttpAggregator
 {
@@ -16,7 +18,10 @@ namespace Web.Platform.HttpAggregator
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     config
-                        .AddJsonFile("Routes/ocelot.json");
+                        .AddJsonFile("ocelot.json", optional: false, reloadOnChange: true)
+                        .AddOcelot(Path.Combine("Routes"), hostingContext.HostingEnvironment as IWebHostEnvironment)
+                        //.AddJsonFile("Routes/ocelotIdentityService.json")
+                        .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
