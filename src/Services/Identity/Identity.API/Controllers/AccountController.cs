@@ -4,12 +4,10 @@ using Identity.Services.Interfaces.Models.User;
 using Identity.Services.Interfaces.Models.User.Abstract;
 using Identity.Services.Interfaces.Models.User.Login;
 using Identity.Services.Interfaces.Models.User.Register;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace Identity.API.Controllers
@@ -20,28 +18,18 @@ namespace Identity.API.Controllers
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        private readonly IWebHostEnvironment _webHost;
 
-        public AccountController(IUserService userService, IMapper mapper, IWebHostEnvironment webHost)
+        public AccountController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
             _mapper = mapper;
-            _webHost = webHost;
         }
 
-
-        [HttpGet("pusers")]
+        [HttpGet("users")]
         public async Task<IActionResult> Index(int? page, int? pageSize)
         {
             var users = await _userService.GetUsingPaginationAsync(page ?? 1, pageSize ?? 10);
 
-            return Ok(users);
-        }
-
-        [HttpGet("users")]
-        public async Task<IActionResult> GetUsers()
-        {
-            var users = await _userService.GetAllAsync();
             return Ok(users);
         }
 
@@ -78,19 +66,8 @@ namespace Identity.API.Controllers
             return Ok(loginResponseModel);
         }
 
-        //[HttpGet("role")]
-        //public async Task<IActionResult> SetRole(Guid id)
-        //{
-        //    var user = await _userService.GetUserByIdAsync(id);
-
-        //    if (user == null)
-        //        return BadRequest(new {message = "User is not found."});
-
-        //    return Ok(user);
-        //}
-
         [HttpPost("role")]
-        public async Task<IActionResult> SetRole(SetRoleRequestModel model)
+        public async Task<IActionResult> PostRole(SetRoleRequestModel model)
         {
             var setRole = await _userService.SetUserRole(model);
             if (model == null)
@@ -115,9 +92,16 @@ namespace Identity.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getpic")]
+        public async Task<IActionResult> GetImage([FromQuery] CoreModel user)
+        {
+            var result = await _userService.GetImageByIdAsync(user.Id);
+
+            return File(result, "image/png", "aasdasdasdasda");
+        }
 
         [HttpPost("updateprofile")]
-        public async Task<IActionResult> UpdateProfile(ProfileRequestModel model)
+        public async Task<IActionResult> PostProfile(ProfileRequestModel model)
         {
             var updateProfile = await _userService.UpdateProfileAsync(model);
             if (model == null)
@@ -127,13 +111,23 @@ namespace Identity.API.Controllers
         }
 
         [HttpPost("updatepic")]
-        public async Task<IActionResult> UploadFile([FromForm]ImageRequestModel model)
+        public async Task<IActionResult> PostImage([FromForm] ImageViewModel model)
         {
             var updateImage = await _userService.UpdateImageAsync(model);
             if (model == null)
                 return BadRequest(new { message = "User is not found" });
 
             return Ok(updateImage);
+        }
+
+        [HttpPatch("deletepic")]
+        public async Task<IActionResult> PatchImage(ImageViewModel model)
+        {
+            var deletePic = await _userService.DeleteImageAsync(model);
+            if (model == null)
+                return BadRequest(new {message = "User is not found"});
+
+            return Ok(deletePic);
         }
     }
 }
