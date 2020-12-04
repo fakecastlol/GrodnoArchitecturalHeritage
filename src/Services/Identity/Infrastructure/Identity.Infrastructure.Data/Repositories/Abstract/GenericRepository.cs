@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Identity.Domain.Core.Entities;
 
 namespace Identity.Infrastructure.Data.Repositories.Abstract
 {
@@ -75,6 +77,5 @@ namespace Identity.Infrastructure.Data.Repositories.Abstract
         {
             await _context.SaveChangesAsync().ConfigureAwait(false);
         }
-
     }
 }
