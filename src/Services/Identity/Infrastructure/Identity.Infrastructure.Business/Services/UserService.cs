@@ -1,15 +1,18 @@
 ﻿using AutoMapper;
 using Identity.Domain.Core.Entities;
+using Identity.Domain.Core.Entities.Enums;
 using Identity.Domain.Interfaces.Repositories;
 using Identity.Services.Interfaces.Contracts;
-using Identity.Services.Interfaces.Helpers;
+using Identity.Services.Interfaces.Helpers.AppSettings;
 using Identity.Services.Interfaces.Models.Jwt;
 using Identity.Services.Interfaces.Models.Pagination;
 using Identity.Services.Interfaces.Models.User;
 using Identity.Services.Interfaces.Models.User.Login;
 using Identity.Services.Interfaces.Models.User.Register;
 using Identity.Services.Interfaces.Validation;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -20,8 +23,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Identity.Domain.Core.Entities.Enums;
-using Microsoft.AspNetCore.Hosting;
 using BC = BCrypt.Net.BCrypt;
 
 namespace Identity.Infrastructure.Business.Services
@@ -29,16 +30,20 @@ namespace Identity.Infrastructure.Business.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly JwtSettings _appSettings;
+        private readonly JwtSettings _jwtSettings;
+        private readonly FileSettings _fileSettings;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly ILogger<UserService> _logger;
 
-        public UserService(IUserRepository userRepository, IOptions<JwtSettings> appSettings, IMapper mapper, IWebHostEnvironment hostEnvironment)
+        public UserService(IUserRepository userRepository, IOptions<JwtSettings> jwtSettings, IOptions<FileSettings> fileSettings, IMapper mapper, IWebHostEnvironment hostEnvironment, ILogger<UserService> logger)
         {
             _userRepository = userRepository;
+            _jwtSettings = jwtSettings.Value;
+            _fileSettings = fileSettings.Value;
             _mapper = mapper;
-            _appSettings = appSettings.Value;
             _hostEnvironment = hostEnvironment;
+            _logger = logger;
         }
 
         public async Task<List<UserResponseCoreModel>> GetAllAsync()
@@ -68,11 +73,22 @@ namespace Identity.Infrastructure.Business.Services
             return result;
         }
 
+        public async Task<byte[]> GetImageByIdAsync(Guid id)
+        {
+            var user = await _userRepository.GetByIdAsync(id);
+
+            var imagePath = user.Avatar;
+
+            var bytes = await File.ReadAllBytesAsync(imagePath);
+
+            return bytes;
+        }
+
         public async Task<UserResponseCoreModel> SetUserRole(SetRoleRequestModel requestModel)
         {
             var user = await _userRepository.GetByIdAsync(requestModel.Id);
             user.Role = requestModel.Role;
-            
+
             var setRole = await _userRepository.UpdateAsync(user);
 
             var result = _mapper.Map<UserResponseCoreModel>(setRole);
@@ -84,7 +100,7 @@ namespace Identity.Infrastructure.Business.Services
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]
@@ -116,7 +132,7 @@ namespace Identity.Infrastructure.Business.Services
             {
                 throw new ValidationException("Incorrect account name or password", "");
             }
-            
+
             userEntity.LastVisited = DateTime.Now;
 
             var userCoreModel = _mapper.Map<UserResponseCoreModel>(userEntity);
@@ -195,11 +211,11 @@ namespace Identity.Infrastructure.Business.Services
             return result;
         }
 
-        public async Task<UserResponseCoreModel> UpdateImageAsync(ImageRequestModel imageRequestModel)
+        public async Task<UserResponseCoreModel> UpdateImageAsync(ImageViewModel imageRequestModel)
         {
             var user = await _userRepository.GetByIdAsync(imageRequestModel.Id);
 
-            user.Avatar = await SaveImageAsync(imageRequestModel);
+            user.Avatar = await SaveImageFileAsync(imageRequestModel);
 
             var update = await _userRepository.UpdateAsync(user);
 
@@ -209,20 +225,45 @@ namespace Identity.Infrastructure.Business.Services
         }
 
 
-        public async Task<string> SaveImageAsync(ImageRequestModel imageRequestModel)
+        public async Task<string> SaveImageFileAsync(ImageViewModel imageRequestModel)
         {
-            var imageName = new String(Path.GetFileNameWithoutExtension(imageRequestModel.Id.ToString()).Take(10).ToArray()).Replace(' ', '-');
+            var imageName = new string(Path.GetFileNameWithoutExtension(imageRequestModel.Id.ToString()).Take(10).ToArray()).Replace(' ', '-');
             imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageRequestModel.File.Name);
 
-            var imagePath =  "../files/" + imageName; //Path.Combine(_hostEnvironment.WebRootPath,"./files/"/* "./Services/Identity/Identity.API/wwwroot/Images/"*/, imageName);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, _fileSettings.Path, imageName);
 
             await using var fileStream = new FileStream(imagePath, FileMode.Create);
 
             await imageRequestModel.File.CopyToAsync(fileStream);
 
+            _logger.LogInformation("File '{0}' saved in '{1}'", imageName, imagePath);
+
             return imagePath;
         }
 
+        public async Task<UserResponseCoreModel> DeleteImageAsync(ImageViewModel imageRequestModel)
+        {
+            var user = await _userRepository.GetByIdAsync(imageRequestModel.Id);
+            if (user == null)
+                throw new ValidationException("user is not found", "");
+
+            DeleteImageFile(user.Avatar);
+
+            user.Avatar = null;
+
+            var userUpdate = await _userRepository.UpdateAsync(user);
+
+            var result = _mapper.Map<UserResponseCoreModel>(userUpdate);
+
+            return result;
+        }
+
+        public void DeleteImageFile(string imageName)
+        {
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, _fileSettings.Path, imageName);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
+        }
 
         public async Task DeleteAsync(Guid id)
         {
