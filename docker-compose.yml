@@ -1,29 +1,32 @@
 version: '3.4'
 
 services:
-  gateway:
-    depends_on: [identity, heritage]
-    image: gateway:latest
-    container_name: gateway
-    restart: always
-    build:
-      context: src/ApiGateways
 
-  identity:
+  sql-data:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sql-data
+    restart: always
+
+  identity-api:
     image: identity:latest
-    container_name: identity
+    container_name: identity-api
     restart: always
     build:
       context: src/Services/Identity
-
-  dbContainer:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: dbContainer
-    restart: always
         
-  heritage:
+  heritage-api:
     image: heritage:latest
-    container_name: heritage
+    container_name: heritage-api
     restart: always
     build:
       context: src/Services/Heritage
+
+  ocelot-api-gateway:
+    image: ocelot-api-gateway:latest
+    container_name: ocelot-api-gateway
+    restart: always
+    build:
+      context: src/ApiGateways
+    depends_on: 
+      - identity-api
+      - heritage-api
