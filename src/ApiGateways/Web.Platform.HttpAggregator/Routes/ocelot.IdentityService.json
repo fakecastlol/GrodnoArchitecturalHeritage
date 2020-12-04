@@ -8,7 +8,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity",
+          "Host": "identity-api",
           "Port": 5000
         }
       ],
@@ -23,7 +23,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity",
+          "Host": "identity-api",
           "Port": 5000
         }
       ],
@@ -38,7 +38,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity",
+          "Host": "identity-api",
           "Port": 5000
         }
       ],
@@ -57,7 +57,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity",
+          "Host": "identity-api",
           "Port": 5000
         }
       ],
@@ -72,7 +72,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity",
+          "Host": "identity-api",
           "Port": 5000
         }
       ],
@@ -87,7 +87,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity",
+          "Host": "identity-api",
           "Port": 5000
         }
       ],
@@ -100,35 +100,18 @@
         "AllowedScopes": [ "Admin" ]
       }
     },
+
     {
       "DownstreamPathTemplate": "/api/account/delete",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity",
+          "Host": "identity-api",
           "Port": 5000
         }
       ],
       "UpstreamPathTemplate": "/delete",
       "UpstreamHttpMethod": [ "Delete" ],
-      "ReRoutesCaseSensitive": false,
-      "DangerousAcceptAnyServerCertificateValidator": false,
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": [ "Admin" ]
-      }
-    },
-    {
-      "DownstreamPathTemplate": "/api/account/pusers",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "identity",
-          "Port": 5000
-        }
-      ],
-      "UpstreamPathTemplate": "/pusers",
-      "UpstreamHttpMethod": [ "Get" ],
       "ReRoutesCaseSensitive": false,
       "DangerousAcceptAnyServerCertificateValidator": false,
       "AuthenticationOptions": {
@@ -142,7 +125,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity",
+          "Host": "identity-api",
           "Port": 5000
         }
       ],
@@ -152,13 +135,12 @@
       "DangerousAcceptAnyServerCertificateValidator": false
     },
 
-
     {
       "DownstreamPathTemplate": "/api/account/updateprofile",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity",
+          "Host": "identity-api",
           "Port": 5000
         }
       ],
@@ -177,12 +159,50 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity",
+          "Host": "identity-api",
           "Port": 5000
         }
       ],
       "UpstreamPathTemplate": "/updatepic",
       "UpstreamHttpMethod": [ "Post" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "Admin", "User" ]
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/account/deletepic",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/deletepic",
+      "UpstreamHttpMethod": [ "Patch" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "Admin", "User" ]
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/account/getpic",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/getpic",
+      "UpstreamHttpMethod": [ "Get" ],
       "ReRoutesCaseSensitive": false,
       "DangerousAcceptAnyServerCertificateValidator": false,
       "AuthenticationOptions": {
