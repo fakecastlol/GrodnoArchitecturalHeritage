@@ -24,6 +24,9 @@ namespace Identity.Infrastructure.Business.Support.Adapter
 
             CreateMap<RegisterCoreModel, RegisterRequestModel>();
             CreateMap<RegisterRequestModel, RegisterCoreModel>();
+
+            CreateMap<UserEntity, ImageViewModel>();
+            CreateMap<ImageViewModel, UserEntity>();
         }
     }
 }
