@@ -6,7 +6,7 @@ using Identity.Infrastructure.Business.Services;
 using Identity.Infrastructure.Data.EFContext;
 using Identity.Infrastructure.Data.Repositories;
 using Identity.Services.Interfaces.Contracts;
-using Identity.Services.Interfaces.Helpers;
+using Identity.Services.Interfaces.Helpers.AppSettings;
 using Identity.Services.Interfaces.Models.User.Login;
 using Identity.Services.Interfaces.Models.User.Register;
 using Identity.Services.Interfaces.Validation.FluentValidation.Login;
@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.IO;
 using System.Reflection;
 using Identity.Services.Interfaces.Validation.FluentValidation.Register;
 
@@ -38,6 +39,8 @@ namespace Identity.API
             services.AddDbContext<UserContext>(options => options.UseSqlServer(connection));
 
             services.Configure<JwtSettings>(Configuration.GetSection("JwtKey"));
+
+            services.Configure<FileSettings>(Configuration.GetSection("Images"));
 
             services.AddScoped<DbContext, UserContext>();
 
