@@ -20,13 +20,17 @@ namespace Identity.Services.Interfaces.Contracts
 
         Task<UserResponseCoreModel> UpdateProfileAsync(ProfileRequestModel profileRequestModel);
 
-        Task<UserResponseCoreModel> UpdateImageAsync(ImageRequestModel imageRequestModel);
+        Task<UserResponseCoreModel> UpdateImageAsync(ImageViewModel imageRequestModel);
 
         Task<RegisterResponseModel> AuthenticateAsync(LoginRequestModel loginCoreModel);
 
         Task<RegisterResponseModel> RegisterAsync(RegisterCoreModel registerCoreModel);
 
         Task<UserResponseCoreModel> UpdateAsync(UserResponseCoreModel item);
+
+        Task<UserResponseCoreModel> DeleteImageAsync(ImageViewModel imageRequestModel);
+
+        Task<byte[]> GetImageByIdAsync(Guid id);
 
         Task DeleteAsync(Guid id);
     }
