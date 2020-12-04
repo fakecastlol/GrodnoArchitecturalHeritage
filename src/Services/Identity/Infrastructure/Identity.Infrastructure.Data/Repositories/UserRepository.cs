@@ -1,4 +1,5 @@
-﻿using Identity.Domain.Core.Entities;
+﻿using System.Threading.Tasks;
+using Identity.Domain.Core.Entities;
 using Identity.Domain.Interfaces.Repositories;
 using Identity.Infrastructure.Data.Repositories.Abstract;
 using Microsoft.EntityFrameworkCore;
