@@ -80,6 +80,8 @@ namespace Identity.Infrastructure.Business.Services
             var imagePath = user.Avatar;
 
             var bytes = await File.ReadAllBytesAsync(imagePath);
+            
+            
 
             return bytes;
         }

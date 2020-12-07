@@ -96,8 +96,9 @@ namespace Identity.API.Controllers
         public async Task<IActionResult> GetImage([FromQuery] CoreModel user)
         {
             var result = await _userService.GetImageByIdAsync(user.Id);
-
-            return File(result, "image/png", "aasdasdasdasda");
+            var base64 = Convert.ToBase64String(result);
+            //return File(base64, "image/png", "aasdasdasdasda");
+            return Ok("data:image/png; base64, " + base64);
         }
 
         [HttpPost("updateprofile")]
