@@ -1,65 +1,41 @@
-using AutoMapper;
-using FluentValidation;
 using FluentValidation.AspNetCore;
-using Identity.Domain.Interfaces.Repositories;
-using Identity.Infrastructure.Business.Services;
+using Identity.API.Extensions;
 using Identity.Infrastructure.Data.EFContext;
-using Identity.Infrastructure.Data.Repositories;
-using Identity.Services.Interfaces.Contracts;
-using Identity.Services.Interfaces.Helpers.AppSettings;
-using Identity.Services.Interfaces.Models.User.Login;
-using Identity.Services.Interfaces.Models.User.Register;
-using Identity.Services.Interfaces.Validation.FluentValidation.Login;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.IO;
-using System.Reflection;
-using Identity.Services.Interfaces.Validation.FluentValidation.Register;
 
 namespace Identity.API
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration.GetConnectionString("DbConnection");
+            services.AddAppConnections(_configuration);
 
-            services.AddDbContext<UserContext>(options => options.UseSqlServer(connection));
+            services.AddConfigures(_configuration);
 
-            services.Configure<JwtSettings>(Configuration.GetSection("JwtKey"));
+            services.AddContexts();
 
-            services.Configure<FileSettings>(Configuration.GetSection("Images"));
+            services.AddRepositories();
 
-            services.AddScoped<DbContext, UserContext>();
+            services.AddMappers();
 
-            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddServices();
 
-            services.AddAutoMapper(Assembly.Load("Identity.Infrastructure.Business"), Assembly.Load("Identity.API"));
+            services.AddValidators();
 
-            services.AddScoped<IUserService, UserService>();
-
-            services.AddMvc(setup =>
-            {
-
-            }).AddFluentValidation();
-
-            services.AddTransient<IValidator<RegisterRequestModel>, RegisterValidator>();
-
-            services.AddTransient<IValidator<LoginRequestModel>, LoginValidator>();
-
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation();
         }
 
 

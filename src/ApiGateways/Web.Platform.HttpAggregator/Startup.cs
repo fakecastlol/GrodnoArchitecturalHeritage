@@ -1,41 +1,28 @@
-using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Web.Platform.HttpAggregator.Extensions;
 
 namespace Web.Platform.HttpAggregator
 {
     public class Startup
     {
+        private readonly IConfiguration _configuration;
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            var authenticationProviderKey = "Bearer";
 
-            services.AddAuthentication().AddJwtBearer(authenticationProviderKey, options => {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = Configuration["Jwt:Issuer"],
-                    ValidAudience = Configuration["Jwt:Issuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-                };
-            });
+            services.AddJwtAuthentication(_configuration);
 
             services.AddCors(options =>
             {
@@ -46,9 +33,8 @@ namespace Web.Platform.HttpAggregator
                         .AllowAnyMethod();
                 });
             });
-            services.AddOcelot(Configuration);
 
-
+            services.AddOcelot(_configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
