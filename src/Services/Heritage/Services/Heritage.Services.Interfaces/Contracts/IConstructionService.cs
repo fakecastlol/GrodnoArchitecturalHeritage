@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Heritage.Services.Interfaces.Models.Construction;
+using Heritage.Services.Interfaces.Models.Pagination;
 
 namespace Heritage.Services.Interfaces.Contracts
 {
     public interface IConstructionService
     {
-        //Task<List<UserResponseCoreModel>> GetAllAsync();
-
-        //Task<PaginatedList<UserResponseCoreModel>> GetUsingPaginationAsync(int pageNumber, int pageSize);
+        Task<PaginatedList<ConstructionResponseCoreModel>> GetUsingPaginationAsync(int pageNumber, int pageSize);
 
         Task<ConstructionResponseCoreModel> GetConstructionByIdAsync(Guid id);
 
@@ -29,6 +28,6 @@ namespace Heritage.Services.Interfaces.Contracts
 
         //Task<byte[]> GetImageByIdAsync(Guid id);
 
-        //Task DeleteAsync(Guid id);
+        Task DeleteConstructionAsync(Guid id);
     }
 }
