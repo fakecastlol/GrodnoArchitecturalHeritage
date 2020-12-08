@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Heritage.Domain.Interfaces\Heritage.Domain.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Services\Heritage.Services.Interfaces\Heritage.Services.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

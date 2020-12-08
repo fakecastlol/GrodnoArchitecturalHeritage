@@ -9,11 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Heritage.Infrastructure.Business\Heritage.Infrastructure.Business.csproj" />
     <ProjectReference Include="..\Infrastructure\Heritage.Infrastructure.Data\Heritage.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\Services\Heritage.Services.Interfaces\Heritage.Services.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

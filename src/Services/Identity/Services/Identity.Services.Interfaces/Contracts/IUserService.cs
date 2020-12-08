@@ -10,8 +10,6 @@ namespace Identity.Services.Interfaces.Contracts
 {
     public interface IUserService
     {
-        Task<List<UserResponseCoreModel>> GetAllAsync();
-
         Task<PaginatedList<UserResponseCoreModel>> GetUsingPaginationAsync(int pageNumber, int pageSize);
 
         Task<UserResponseCoreModel> GetUserByIdAsync(Guid id);
@@ -26,12 +24,10 @@ namespace Identity.Services.Interfaces.Contracts
 
         Task<RegisterResponseModel> RegisterAsync(RegisterCoreModel registerCoreModel);
 
-        Task<UserResponseCoreModel> UpdateAsync(UserResponseCoreModel item);
-
         Task<UserResponseCoreModel> DeleteImageAsync(ImageViewModel imageRequestModel);
 
-        Task<byte[]> GetImageByIdAsync(Guid id);
+        Task<string> GetImageByIdAsync(Guid id);
 
-        Task DeleteAsync(Guid id);
+        Task DeleteUserAsync(Guid id);
     }
 }

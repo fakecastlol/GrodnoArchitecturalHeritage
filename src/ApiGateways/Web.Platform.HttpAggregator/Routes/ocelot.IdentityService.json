@@ -2,6 +2,7 @@
   "GlobalConfiguration": {
 
   },
+
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/account/login",
@@ -183,7 +184,7 @@
         }
       ],
       "UpstreamPathTemplate": "/deletepic",
-      "UpstreamHttpMethod": [ "Patch" ],
+      "UpstreamHttpMethod": [ "Delete" ],
       "ReRoutesCaseSensitive": false,
       "DangerousAcceptAnyServerCertificateValidator": false,
       "AuthenticationOptions": {

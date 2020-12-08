@@ -79,7 +79,7 @@ namespace Identity.API.Controllers
         [HttpDelete("delete")]
         public async Task<IActionResult> DeleteUser(CoreModel user)
         {
-            await _userService.DeleteAsync(user.Id);
+            await _userService.DeleteUserAsync(user.Id);
 
             return Ok();
         }
@@ -96,9 +96,12 @@ namespace Identity.API.Controllers
         public async Task<IActionResult> GetImage([FromQuery] CoreModel user)
         {
             var result = await _userService.GetImageByIdAsync(user.Id);
-            var base64 = Convert.ToBase64String(result);
-            //return File(base64, "image/png", "aasdasdasdasda");
-            return Ok("data:image/png; base64, " + base64);
+            if (result == null)
+                return BadRequest(new {message = "Image is not found"});
+
+            //var base64 = Convert.ToBase64String(result);
+
+            return Ok("data:image/png; base64, " + result);
         }
 
         [HttpPost("updateprofile")]
@@ -121,12 +124,13 @@ namespace Identity.API.Controllers
             return Ok(updateImage);
         }
 
-        [HttpPatch("deletepic")]
-        public async Task<IActionResult> PatchImage(ImageViewModel model)
+        [HttpDelete("deletepic")]
+        public async Task<IActionResult> DeleteImage(ImageViewModel model)
         {
-            var deletePic = await _userService.DeleteImageAsync(model);
             if (model == null)
-                return BadRequest(new {message = "User is not found"});
+                return BadRequest(new { message = "User is not found" });
+
+            var deletePic = await _userService.DeleteImageAsync(model);
 
             return Ok(deletePic);
         }
