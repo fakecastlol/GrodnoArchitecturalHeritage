@@ -3,7 +3,7 @@ using Identity.Domain.Core.Entities;
 using Identity.Domain.Core.Entities.Enums;
 using Identity.Domain.Interfaces.Repositories;
 using Identity.Services.Interfaces.Contracts;
-using Identity.Services.Interfaces.Helpers.AppSettings;
+using Identity.Services.Interfaces.Helpers.Options;
 using Identity.Services.Interfaces.Models.Pagination;
 using Identity.Services.Interfaces.Models.User;
 using Identity.Services.Interfaces.Models.User.Login;
@@ -91,7 +91,7 @@ namespace Identity.Infrastructure.Business.Services
                 throw new ValidationException("Incorrect account name or password", "");
             }
 
-            userEntity.LastVisited = DateTime.Now;
+            userEntity.LastVisited = DateTime.UtcNow;
 
             var userCoreModel = _mapper.Map<UserResponseCoreModel>(userEntity);
             var token = _tokenService.GenerateJwtToken(userCoreModel);
@@ -119,7 +119,7 @@ namespace Identity.Infrastructure.Business.Services
                 Email = registerCoreModel.Email,
                 Password = BC.HashPassword(registerCoreModel.Password),
                 Role = Roles.User,
-                RegistrationDate = DateTime.Now,
+                RegistrationDate = DateTime.UtcNow,
                 Avatar = _fileSettings.DefaultImage
             };
 

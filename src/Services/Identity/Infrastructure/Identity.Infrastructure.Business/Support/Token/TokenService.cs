@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Identity.Services.Interfaces.Contracts;
-using Identity.Services.Interfaces.Helpers.AppSettings;
+using Identity.Services.Interfaces.Helpers.Options;
 using Identity.Services.Interfaces.Models.Jwt;
 using Identity.Services.Interfaces.Models.User;
 using Microsoft.Extensions.Options;

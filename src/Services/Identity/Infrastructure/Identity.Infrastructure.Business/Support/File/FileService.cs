@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Identity.Services.Interfaces.Contracts;
-using Identity.Services.Interfaces.Helpers.AppSettings;
+using Identity.Services.Interfaces.Helpers.Options;
 using Identity.Services.Interfaces.Models.User;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;

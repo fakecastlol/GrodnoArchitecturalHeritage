@@ -8,7 +8,7 @@ using Identity.Infrastructure.Business.Support.Token;
 using Identity.Infrastructure.Data.EFContext;
 using Identity.Infrastructure.Data.Repositories;
 using Identity.Services.Interfaces.Contracts;
-using Identity.Services.Interfaces.Helpers.AppSettings;
+using Identity.Services.Interfaces.Helpers.Options;
 using Identity.Services.Interfaces.Models.User.Login;
 using Identity.Services.Interfaces.Models.User.Register;
 using Identity.Services.Interfaces.Validation.FluentValidation.Login;
