@@ -10,7 +10,7 @@ namespace Heritage.Infrastructure.Data.Migrations.MigrationFactory
         {
             var optionsBuilder = new DbContextOptionsBuilder<HeritageContext>();
             optionsBuilder.UseSqlServer(
-                "Server=localhost, 14330;Database=HeritageDB;User=sa;Password=Password_111ssassSsvc111;TrustServerCertificate=true");
+                "Server=localhost, 14330;Database=HeritageDB;User=sa;Password=Password_111ssassSsvc111;TrustServerCertificate=true", x => x.UseNetTopologySuite());
 
             return new HeritageContext(optionsBuilder.Options);
         }
