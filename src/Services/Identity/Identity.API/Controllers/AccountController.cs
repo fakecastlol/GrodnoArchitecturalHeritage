@@ -80,7 +80,7 @@ namespace Identity.API.Controllers
         public async Task<IActionResult> DeleteUser(CoreModel user)
         {
             await _userService.DeleteUserAsync(user.Id);
-
+            
             return Ok();
         }
 
@@ -88,6 +88,9 @@ namespace Identity.API.Controllers
         public async Task<IActionResult> GetUser([FromQuery] CoreModel user)
         {
             var result = await _userService.GetUserByIdAsync(user.Id);
+
+            if (result == null)
+                return BadRequest(new { message = "User is not found" });
 
             return Ok(result);
         }
@@ -97,7 +100,7 @@ namespace Identity.API.Controllers
         {
             var result = await _userService.GetImageByIdAsync(user.Id);
             if (result == null)
-                return BadRequest(new {message = "Image is not found"});
+                return BadRequest(new { message = "Image is not found" });
 
             //var base64 = Convert.ToBase64String(result);
 
