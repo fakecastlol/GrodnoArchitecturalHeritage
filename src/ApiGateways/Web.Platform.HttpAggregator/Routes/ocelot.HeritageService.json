@@ -1,8 +1,100 @@
 {
-  "GlobalConfiguration": {
-
-  },
   "Routes": [
+
+    {
+      "DownstreamPathTemplate": "/api/construction/createconstruction",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "heritage-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/createconstruction",
+      "UpstreamHttpMethod": [ "Post", "Options" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/construction/constructions",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "heritage-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/constructions",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/construction/getconstruction",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "heritage-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/getconstruction",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/construction/deleteconstruction",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "heritage-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/deleteconstruction",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
+    },
+
+
+
+
+
+
+    {
+      "DownstreamPathTemplate": "/api/test/test",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "heritage-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/test",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/test/abc",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "heritage-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/abc",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
+    }
 
   ],
 
