@@ -18,7 +18,7 @@ namespace Web.Platform.HttpAggregator
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     config
-                        .AddJsonFile("ocelot.json", optional: false, reloadOnChange: true)
+                        //.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true)
                         .AddOcelot(Path.Combine("Routes"), hostingContext.HostingEnvironment as IWebHostEnvironment)
                         //.AddJsonFile("Routes/ocelotIdentityService.json")
                         .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath);

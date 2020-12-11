@@ -31,6 +31,8 @@ namespace Heritage.API
             services.AddMappers();
 
             services.AddServices();
+
+            services.AddControllers();
         }
 
 
@@ -45,10 +47,7 @@ namespace Heritage.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
 
             DbInitializer.Seed(serviceProvider);

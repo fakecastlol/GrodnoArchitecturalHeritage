@@ -18,9 +18,7 @@ namespace Heritage.Services.Interfaces.Contracts
 
         //Task<UserResponseCoreModel> UpdateImageAsync(ImageViewModel imageRequestModel);
 
-        //Task<RegisterResponseModel> AuthenticateAsync(LoginRequestModel loginCoreModel);
-
-        //Task<RegisterResponseModel> RegisterAsync(RegisterCoreModel registerCoreModel);
+        Task<ConstructionResponseCoreModel> CreateConstructionAsync(ConstructionRequestCoreModel requestModel);
 
         //Task<UserResponseCoreModel> UpdateAsync(UserResponseCoreModel item);
 

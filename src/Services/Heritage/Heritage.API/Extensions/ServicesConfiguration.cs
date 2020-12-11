@@ -17,7 +17,8 @@ namespace Heritage.API.Extensions
         {
             var connection = configuration.GetConnectionString("DbConnection");
 
-            services.AddDbContext<HeritageContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<HeritageContext>(options => options.UseSqlServer(connection, x => x.UseNetTopologySuite()) 
+            );
         }
 
         public static void AddContexts(this IServiceCollection services)

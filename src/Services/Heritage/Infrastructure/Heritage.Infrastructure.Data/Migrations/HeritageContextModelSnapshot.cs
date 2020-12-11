@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using NetTopologySuite.Geometries;
 
 namespace Heritage.Infrastructure.Data.Migrations
 {
@@ -36,6 +37,9 @@ namespace Heritage.Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("BuildDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<Point>("Location")
+                        .HasColumnType("geography");
 
                     b.Property<int>("LossCause")
                         .HasColumnType("int");

@@ -1,6 +1,7 @@
 ﻿using System;
 using Heritage.Domain.Core.Entities.Enums;
 using Heritage.Services.Interfaces.Models.Construction.Abstract;
+using NetTopologySuite.Geometries;
 
 namespace Heritage.Services.Interfaces.Models.Construction
 {
@@ -14,7 +15,7 @@ namespace Heritage.Services.Interfaces.Models.Construction
         public Materials Material { get; set; }
         public string Article { get; set; }
         public ArchitecturalStyles ArchitecturalStyle { get; set; }
-        //public Point Location { get; set; }
+        public Point Location { get; set; }
         public string Address { get; set; }
     }
 }

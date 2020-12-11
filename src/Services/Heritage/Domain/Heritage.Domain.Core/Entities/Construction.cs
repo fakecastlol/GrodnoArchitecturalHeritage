@@ -21,9 +21,8 @@ namespace Heritage.Domain.Core.Entities
         public Materials Material { get; set; }
         public string Article { get; set; }
         public ArchitecturalStyles ArchitecturalStyle { get; set; }
-        //public Point Location { get; set; }
+        public Point Location { get; set; }
         public string Address { get; set; }
-
         public virtual ICollection<Image> Images { get; set; } /*= new List<Image>();*/
     }
 }

@@ -12,4 +12,8 @@
     <ProjectReference Include="..\..\Domain\Heritage.Domain.Core\Heritage.Domain.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\Options\" />
+  </ItemGroup>
+
 </Project>
