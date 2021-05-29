@@ -1,10 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201116094748_ChangeIdToGuid.cs" />
+    <Compile Remove="Migrations\20201116094748_ChangeIdToGuid.Designer.cs" />
+    <Compile Remove="Migrations\20201117083717_deleteRoleTable.cs" />
+    <Compile Remove="Migrations\20201117083717_deleteRoleTable.Designer.cs" />
+    <Compile Remove="Migrations\20201117162256_RemoveAddingAdmin.cs" />
+    <Compile Remove="Migrations\20201117162256_RemoveAddingAdmin.Designer.cs" />
+    <Compile Remove="Migrations\20201125151028_new_user_fields.cs" />
+    <Compile Remove="Migrations\20201125151028_new_user_fields.Designer.cs" />
     <Compile Remove="Migrations\20201202160744_change_column_type.cs" />
     <Compile Remove="Migrations\20201202160744_change_column_type.Designer.cs" />
     <Compile Remove="Migrations\20201202161205_change_column_type2.cs" />
@@ -19,6 +27,22 @@
     <Compile Remove="Migrations\20201202162009_column_type_change2.Designer.cs" />
     <Compile Remove="Migrations\20201202162345_column_type_change.cs" />
     <Compile Remove="Migrations\20201202162345_column_type_change.Designer.cs" />
+    <Compile Remove="Migrations\20201202162447_column_type_change.cs" />
+    <Compile Remove="Migrations\20201202162447_column_type_change.Designer.cs" />
+    <Compile Remove="Migrations\20201215192140_added_data_anatations.cs" />
+    <Compile Remove="Migrations\20201215192140_added_data_anatations.Designer.cs" />
+    <Compile Remove="Migrations\20201215192552_added_data_anatations.cs" />
+    <Compile Remove="Migrations\20201215192552_added_data_anatations.Designer.cs" />
+    <Compile Remove="Migrations\20201215193944_added_data_anatations.cs" />
+    <Compile Remove="Migrations\20201215193944_added_data_anatations.Designer.cs" />
+    <Compile Remove="Migrations\20201215203105_added_data_anatations.cs" />
+    <Compile Remove="Migrations\20201215203105_added_data_anatations.Designer.cs" />
+    <Compile Remove="Migrations\20201215210840_initial_migration.cs" />
+    <Compile Remove="Migrations\20201215210840_initial_migration.Designer.cs" />
+    <Compile Remove="Migrations\20201215211005_initial_migration.cs" />
+    <Compile Remove="Migrations\20201215211005_initial_migration.Designer.cs" />
+    <Compile Remove="Migrations\20201215213016_initial_migration.cs" />
+    <Compile Remove="Migrations\20201215213016_initial_migration.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

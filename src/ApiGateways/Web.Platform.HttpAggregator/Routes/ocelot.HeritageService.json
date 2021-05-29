@@ -32,6 +32,21 @@
     },
 
     {
+      "DownstreamPathTemplate": "/api/construction/getallconstructions",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "heritage-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/getallconstructions",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
+    },
+
+    {
       "DownstreamPathTemplate": "/api/construction/getconstruction",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -41,6 +56,21 @@
         }
       ],
       "UpstreamPathTemplate": "/getconstruction",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
+    },
+
+    {
+      "DownstreamPathTemplate": "/app/objects/{name}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "heritage-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/getimageconstruction/objects/{name}",
       "UpstreamHttpMethod": [ "Get" ],
       "ReRoutesCaseSensitive": false,
       "DangerousAcceptAnyServerCertificateValidator": false
@@ -61,13 +91,8 @@
       "DangerousAcceptAnyServerCertificateValidator": false
     },
 
-
-
-
-
-
     {
-      "DownstreamPathTemplate": "/api/test/test",
+      "DownstreamPathTemplate": "/api/construction/updateconstruction",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -75,14 +100,14 @@
           "Port": 5000
         }
       ],
-      "UpstreamPathTemplate": "/test",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/updateconstruction",
+      "UpstreamHttpMethod": [ "Post" ],
       "ReRoutesCaseSensitive": false,
       "DangerousAcceptAnyServerCertificateValidator": false
     },
 
     {
-      "DownstreamPathTemplate": "/api/test/abc",
+      "DownstreamPathTemplate": "/api/image/addimage",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -90,8 +115,8 @@
           "Port": 5000
         }
       ],
-      "UpstreamPathTemplate": "/abc",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/addimage",
+      "UpstreamHttpMethod": [ "Post" ],
       "ReRoutesCaseSensitive": false,
       "DangerousAcceptAnyServerCertificateValidator": false
     }

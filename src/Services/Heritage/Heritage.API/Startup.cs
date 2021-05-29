@@ -2,17 +2,19 @@ using Heritage.API.Extensions;
 using Heritage.Infrastructure.Data.EFContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.IO;
 
 namespace Heritage.API
 {
     public class Startup
     {
         private readonly IConfiguration _configuration;
+
 
         public Startup(IConfiguration configuration)
         {
@@ -24,6 +26,8 @@ namespace Heritage.API
         {
             services.AddAppConnections(_configuration);
 
+            services.AddConfigures(_configuration);
+
             services.AddContexts();
 
             services.AddRepositories();
@@ -31,6 +35,8 @@ namespace Heritage.API
             services.AddMappers();
 
             services.AddServices();
+
+            services.AddDirectoryBrowser();
 
             services.AddControllers();
         }
@@ -42,6 +48,17 @@ namespace Heritage.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
+
+            var path = Path.Combine(env.ContentRootPath, "objects");
+
+            app.UseFileServer(new FileServerOptions()
+            {
+                FileProvider = new PhysicalFileProvider(path),
+                RequestPath = path,
+                EnableDirectoryBrowsing = true
+            });
 
             app.UseRouting();
 

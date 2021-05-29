@@ -5,7 +5,7 @@ namespace Identity.Infrastructure.Data.EFContext
 {
     public class UserContext : DbContext
     {
-        public DbSet<UserEntity> Users { get; set; }
+        public DbSet<User> Users { get; set; }
         public UserContext(DbContextOptions options)
             : base(options)
         {

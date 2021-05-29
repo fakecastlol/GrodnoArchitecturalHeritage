@@ -1,4 +1,6 @@
-﻿namespace Identity.Services.Interfaces.Models.User.Register
+﻿using Identity.Services.Interfaces.Models.User.Register;
+
+namespace Identity.Services.Interfaces.Models.User.Register
 {
     public class RegisterResponseModel
     {

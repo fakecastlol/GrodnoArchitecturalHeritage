@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Identity.Services.Interfaces.Models.User.Login;
+using Identity.Services.Interfaces.Models.User.Register;
 
 namespace Identity.Services.Interfaces.Validation.FluentValidation.Login
 {

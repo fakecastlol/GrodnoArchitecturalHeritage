@@ -1,12 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="FakesAssemblies\**" />
+    <EmbeddedResource Remove="FakesAssemblies\**" />
+    <None Remove="FakesAssemblies\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Heritage.Domain.Core\Heritage.Domain.Core.csproj" />
     <ProjectReference Include="..\..\Domain\Heritage.Domain.Interfaces\Heritage.Domain.Interfaces.csproj" />
     <ProjectReference Include="..\..\Services\Heritage.Services.Interfaces\Heritage.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\Heritage.Infrastructure.Data\Heritage.Infrastructure.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalDesignTimeBuildInput Remove="FakesAssemblies\**" />
   </ItemGroup>
 
 </Project>

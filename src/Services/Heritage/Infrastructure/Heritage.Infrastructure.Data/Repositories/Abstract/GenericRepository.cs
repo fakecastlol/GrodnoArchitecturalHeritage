@@ -54,6 +54,7 @@ namespace Heritage.Infrastructure.Data.Repositories.Abstract
         public async Task<TEntity> UpdateAsync(TEntity item)
         {
             var entityEntry = _dbSet.Update(item);
+
             await SaveAsync();
 
             return entityEntry.Entity;
@@ -75,6 +76,5 @@ namespace Heritage.Infrastructure.Data.Repositories.Abstract
         {
             await _context.SaveChangesAsync().ConfigureAwait(false);
         }
-
     }
 }

@@ -3,7 +3,7 @@ using Identity.Domain.Interfaces.Repositories.Generic;
 
 namespace Identity.Domain.Interfaces.Repositories
 {
-    public interface IUserRepository : IGenericRepository<UserEntity>
+    public interface IUserRepository : IGenericRepository<User>
     {
     }
 }

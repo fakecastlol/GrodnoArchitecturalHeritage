@@ -35,6 +35,58 @@
     },
 
     {
+      "DownstreamPathTemplate": "/api/account/confirmemail",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/confirmemail",
+      "UpstreamHttpMethod": [ "Post", "Options", "Query" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/account/confirmregister",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/confirmregister",
+      "UpstreamHttpMethod": [ "Post" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": {
+        "claims_UserId": "Claims[jti] > value > |"
+      }
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/account/forgot",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/forgot",
+      "UpstreamHttpMethod": [ "Post", "Options" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
+    },
+
+    {
       "DownstreamPathTemplate": "/api/account/users",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -51,36 +103,6 @@
         "AuthenticationProviderKey": "Bearer",
         "AllowedScopes": [ "Admin" ]
       }
-    },
-
-    {
-      "DownstreamPathTemplate": "/api/home/index",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "identity-api",
-          "Port": 5000
-        }
-      ],
-      "UpstreamPathTemplate": "/index",
-      "UpstreamHttpMethod": [ "Get" ],
-      "ReRoutesCaseSensitive": false,
-      "DangerousAcceptAnyServerCertificateValidator": false
-    },
-
-    {
-      "DownstreamPathTemplate": "/api/home/about",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "identity-api",
-          "Port": 5000
-        }
-      ],
-      "UpstreamPathTemplate": "/about",
-      "UpstreamHttpMethod": [ "Get" ],
-      "ReRoutesCaseSensitive": false,
-      "DangerousAcceptAnyServerCertificateValidator": false
     },
 
     {
@@ -151,7 +173,7 @@
       "DangerousAcceptAnyServerCertificateValidator": false,
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": [ "Admin", "User" ]
+        "AllowedScopes": [ "Admin", "Moderator", "User", "Unchecked" ]
       }
     },
 
@@ -170,7 +192,7 @@
       "DangerousAcceptAnyServerCertificateValidator": false,
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": [ "Admin", "User" ]
+        "AllowedScopes": [ "Admin", "Moderator", "User", "Unchecked" ]
       }
     },
 
@@ -189,12 +211,12 @@
       "DangerousAcceptAnyServerCertificateValidator": false,
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": [ "Admin", "User" ]
+        "AllowedScopes": [ "Admin", "Moderator", "User", "Unchecked" ]
       }
     },
 
     {
-      "DownstreamPathTemplate": "/api/account/getpic",
+      "DownstreamPathTemplate": "/app/files/{name}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -202,14 +224,25 @@
           "Port": 5000
         }
       ],
-      "UpstreamPathTemplate": "/getpic",
+      "UpstreamPathTemplate": "/getpic/files/{name}",
       "UpstreamHttpMethod": [ "Get" ],
       "ReRoutesCaseSensitive": false,
-      "DangerousAcceptAnyServerCertificateValidator": false,
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": [ "Admin", "User" ]
-      }
+      "DangerousAcceptAnyServerCertificateValidator": false
+    },
+
+    {
+      "DownstreamPathTemplate": "/app/files/default/default-image.jpg",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identity-api",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/getdefaultpic",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false,
+      "DangerousAcceptAnyServerCertificateValidator": false
     }
   ],
 

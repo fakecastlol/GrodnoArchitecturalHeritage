@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Identity.Services.Interfaces.Models.User;
+using Identity.Services.Interfaces.Models.User.Register;
 
 namespace Identity.Services.Interfaces.Contracts
 {

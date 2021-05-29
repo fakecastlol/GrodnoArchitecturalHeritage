@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Identity.Services.Interfaces.Models.User.Abstract
+namespace Identity.Services.Interfaces.Models.User.Register.Abstract
 {
     public class CoreModel
     {

@@ -27,33 +27,44 @@ namespace Heritage.Infrastructure.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
-                    b.Property<int>("ArchitecturalStyle")
+                    b.Property<int?>("ArchitecturalStyle")
                         .HasColumnType("int");
 
                     b.Property<string>("Article")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(2083)")
+                        .HasMaxLength(2083);
 
-                    b.Property<DateTime>("BuildDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime?>("BuildDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(300)")
+                        .HasMaxLength(300);
 
                     b.Property<Point>("Location")
                         .HasColumnType("geography");
 
-                    b.Property<int>("LossCause")
+                    b.Property<int?>("LossCause")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("LossDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime?>("LossDate")
+                        .HasColumnType("date");
 
-                    b.Property<int>("Material")
+                    b.Property<int?>("Material")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
-                    b.Property<int>("Type")
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -71,6 +82,7 @@ namespace Heritage.Infrastructure.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

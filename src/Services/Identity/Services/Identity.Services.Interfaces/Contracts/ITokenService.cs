@@ -5,5 +5,7 @@ namespace Identity.Services.Interfaces.Contracts
     public interface ITokenService
     {
         string GenerateJwtToken(UserResponseCoreModel user);
+
+        bool ValidateToken(string authToken);
     }
 }

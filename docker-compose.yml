@@ -2,6 +2,11 @@ version: '3.4'
 
 services:
 
+  rabbit-mq:
+    image: rabbitmq:3-management
+    container_name: rabbit-mq
+    restart: always
+    
   sql-data:
     image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: sql-data
@@ -13,13 +18,28 @@ services:
     restart: always
     build:
       context: src/Services/Identity
-        
+#    depends_on:
+#      - sql-data
+#      - rabbit-mq         
+
   heritage-api:
     image: heritage:latest
     container_name: heritage-api
     restart: always
     build:
       context: src/Services/Heritage
+#    depends_on:
+#      - sql-data
+#      - rabbit-mq
+      
+  logger-api:
+    image: logger:latest
+    container_name: logger-api
+    restart: always
+    build:
+      context: src/Services/Logger
+#    depends_on:
+#      - rabbit-mq
 
   ocelot-api-gateway:
     image: ocelot-api-gateway:latest
@@ -27,6 +47,9 @@ services:
     restart: always
     build:
       context: src/ApiGateways
-    depends_on: 
-      - identity-api
-      - heritage-api
+#    depends_on:
+#      - rabbit-mq
+#      - sql-data
+#      - identity-api
+#      - heritage-api
+#      - logger-api

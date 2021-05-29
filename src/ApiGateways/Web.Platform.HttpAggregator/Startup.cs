@@ -46,16 +46,9 @@ namespace Web.Platform.HttpAggregator
 
             app.UseHttpsRedirection();
 
-            //app.UseRouting();
-
             app.UseCors();
 
             app.UseAuthorization();
-
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers();
-            //});
 
             app.UseOcelot().Wait();
         }

@@ -1,0 +1,665 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Heritage.Domain.Core.1.0.0.0.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:Heritage.Domain.Core.Entities.Abstract.Fakes.ShimBaseEntity">
+            <summary>Shim type of Heritage.Domain.Core.Entities.Abstract.BaseEntity</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Abstract.Fakes.ShimBaseEntity.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Abstract.Fakes.ShimBaseEntity.#ctor(Heritage.Domain.Core.Entities.Abstract.BaseEntity)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:Heritage.Domain.Core.Entities.Abstract.Fakes.ShimBaseEntity.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Abstract.Fakes.ShimBaseEntity.AllInstances.IdGet">
+            <summary>Sets the shim of BaseEntity.get_Id(BaseEntity this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Abstract.Fakes.ShimBaseEntity.AllInstances.IdSetGuid">
+            <summary>Sets the shim of BaseEntity.set_Id(BaseEntity this, Guid value)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Abstract.Fakes.ShimBaseEntity.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Abstract.Fakes.ShimBaseEntity.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Abstract.Fakes.ShimBaseEntity.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Abstract.Fakes.ShimBaseEntity.Constructor">
+            <summary>Sets the shim of BaseEntity.BaseEntity(BaseEntity this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Abstract.Fakes.ShimBaseEntity.IdGet">
+            <summary>Sets the shim of BaseEntity.get_Id(BaseEntity this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Abstract.Fakes.ShimBaseEntity.IdSetGuid">
+            <summary>Sets the shim of BaseEntity.set_Id(BaseEntity this, Guid value)</summary>
+        </member>
+        <member name="T:Heritage.Domain.Core.Entities.Abstract.Fakes.StubBaseEntity">
+            <summary>Stub type of Heritage.Domain.Core.Entities.Abstract.BaseEntity</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Abstract.Fakes.StubBaseEntity.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Abstract.Fakes.StubBaseEntity.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Abstract.Fakes.StubBaseEntity.InitializeStub">
+            <summary>Initializes a new instance of type StubBaseEntity</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Abstract.Fakes.StubBaseEntity.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Abstract.Fakes.StubBaseEntity.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Heritage.Domain.Core.Entities.Fakes.ShimConstruction">
+            <summary>Shim type of Heritage.Domain.Core.Entities.Construction</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.#ctor(Heritage.Domain.Core.Entities.Construction)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AddressGet">
+            <summary>Sets the shim of Construction.get_Address(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AddressSetString">
+            <summary>Sets the shim of Construction.set_Address(Construction this, String value)</summary>
+        </member>
+        <member name="T:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.AddressGet">
+            <summary>Sets the shim of Construction.get_Address(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.AddressSetString">
+            <summary>Sets the shim of Construction.set_Address(Construction this, String value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.ArchitecturalStyleGet">
+            <summary>Sets the shim of Construction.get_ArchitecturalStyle(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.ArchitecturalStyleSetNullableOfArchitecturalStyles">
+            <summary>Sets the shim of Construction.set_ArchitecturalStyle(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.ArticleGet">
+            <summary>Sets the shim of Construction.get_Article(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.ArticleSetString">
+            <summary>Sets the shim of Construction.set_Article(Construction this, String value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.BuildDateGet">
+            <summary>Sets the shim of Construction.get_BuildDate(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.BuildDateSetNullableOfDateTime">
+            <summary>Sets the shim of Construction.set_BuildDate(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.DescriptionGet">
+            <summary>Sets the shim of Construction.get_Description(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.DescriptionSetString">
+            <summary>Sets the shim of Construction.set_Description(Construction this, String value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.ImagesGet">
+            <summary>Sets the shim of Construction.get_Images(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.ImagesSetICollectionOfImage">
+            <summary>Sets the shim of Construction.set_Images(Construction this, ICollection`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.LocationGet">
+            <summary>Sets the shim of Construction.get_Location(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.LocationSetPoint">
+            <summary>Sets the shim of Construction.set_Location(Construction this, Point value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.LossCauseGet">
+            <summary>Sets the shim of Construction.get_LossCause(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.LossCauseSetNullableOfLossCauses">
+            <summary>Sets the shim of Construction.set_LossCause(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.LossDateGet">
+            <summary>Sets the shim of Construction.get_LossDate(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.LossDateSetNullableOfDateTime">
+            <summary>Sets the shim of Construction.set_LossDate(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.MaterialGet">
+            <summary>Sets the shim of Construction.get_Material(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.MaterialSetNullableOfMaterials">
+            <summary>Sets the shim of Construction.set_Material(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.NameGet">
+            <summary>Sets the shim of Construction.get_Name(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.NameSetString">
+            <summary>Sets the shim of Construction.set_Name(Construction this, String value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.StatusGet">
+            <summary>Sets the shim of Construction.get_Status(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.StatusSetNullableOfStatuses">
+            <summary>Sets the shim of Construction.set_Status(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.TypeGet">
+            <summary>Sets the shim of Construction.get_Type(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.AllInstances.TypeSetNullableOfTypes">
+            <summary>Sets the shim of Construction.set_Type(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.ArchitecturalStyleGet">
+            <summary>Sets the shim of Construction.get_ArchitecturalStyle(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.ArchitecturalStyleSetNullableOfArchitecturalStyles">
+            <summary>Sets the shim of Construction.set_ArchitecturalStyle(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.ArticleGet">
+            <summary>Sets the shim of Construction.get_Article(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.ArticleSetString">
+            <summary>Sets the shim of Construction.set_Article(Construction this, String value)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.BuildDateGet">
+            <summary>Sets the shim of Construction.get_BuildDate(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.BuildDateSetNullableOfDateTime">
+            <summary>Sets the shim of Construction.set_BuildDate(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.Constructor">
+            <summary>Sets the shim of Construction.Construction(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.DescriptionGet">
+            <summary>Sets the shim of Construction.get_Description(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.DescriptionSetString">
+            <summary>Sets the shim of Construction.set_Description(Construction this, String value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.ImagesGet">
+            <summary>Sets the shim of Construction.get_Images(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.ImagesSetICollectionOfImage">
+            <summary>Sets the shim of Construction.set_Images(Construction this, ICollection`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.LocationGet">
+            <summary>Sets the shim of Construction.get_Location(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.LocationSetPoint">
+            <summary>Sets the shim of Construction.set_Location(Construction this, Point value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.LossCauseGet">
+            <summary>Sets the shim of Construction.get_LossCause(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.LossCauseSetNullableOfLossCauses">
+            <summary>Sets the shim of Construction.set_LossCause(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.LossDateGet">
+            <summary>Sets the shim of Construction.get_LossDate(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.LossDateSetNullableOfDateTime">
+            <summary>Sets the shim of Construction.set_LossDate(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.MaterialGet">
+            <summary>Sets the shim of Construction.get_Material(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.MaterialSetNullableOfMaterials">
+            <summary>Sets the shim of Construction.set_Material(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.NameGet">
+            <summary>Sets the shim of Construction.get_Name(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.NameSetString">
+            <summary>Sets the shim of Construction.set_Name(Construction this, String value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.StatusGet">
+            <summary>Sets the shim of Construction.get_Status(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.StatusSetNullableOfStatuses">
+            <summary>Sets the shim of Construction.set_Status(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.TypeGet">
+            <summary>Sets the shim of Construction.get_Type(Construction this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimConstruction.TypeSetNullableOfTypes">
+            <summary>Sets the shim of Construction.set_Type(Construction this, Nullable`1 value)</summary>
+        </member>
+        <member name="T:Heritage.Domain.Core.Entities.Fakes.ShimImage">
+            <summary>Shim type of Heritage.Domain.Core.Entities.Image</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimImage.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimImage.#ctor(Heritage.Domain.Core.Entities.Image)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:Heritage.Domain.Core.Entities.Fakes.ShimImage.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.AllInstances.ConstructionGet">
+            <summary>Sets the shim of Image.get_Construction(Image this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.AllInstances.ConstructionIdGet">
+            <summary>Sets the shim of Image.get_ConstructionId(Image this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.AllInstances.ConstructionIdSetGuid">
+            <summary>Sets the shim of Image.set_ConstructionId(Image this, Guid value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.AllInstances.ConstructionSetConstruction">
+            <summary>Sets the shim of Image.set_Construction(Image this, Construction value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.AllInstances.NameGet">
+            <summary>Sets the shim of Image.get_Name(Image this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.AllInstances.NameSetString">
+            <summary>Sets the shim of Image.set_Name(Image this, String value)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimImage.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimImage.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.ConstructionGet">
+            <summary>Sets the shim of Image.get_Construction(Image this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.ConstructionIdGet">
+            <summary>Sets the shim of Image.get_ConstructionId(Image this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.ConstructionIdSetGuid">
+            <summary>Sets the shim of Image.set_ConstructionId(Image this, Guid value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.ConstructionSetConstruction">
+            <summary>Sets the shim of Image.set_Construction(Image this, Construction value)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.Constructor">
+            <summary>Sets the shim of Image.Image(Image this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.NameGet">
+            <summary>Sets the shim of Image.get_Name(Image this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimImage.NameSetString">
+            <summary>Sets the shim of Image.set_Name(Image this, String value)</summary>
+        </member>
+        <member name="T:Heritage.Domain.Core.Entities.Fakes.ShimMyPoint">
+            <summary>Shim type of Heritage.Domain.Core.Entities.MyPoint</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimMyPoint.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimMyPoint.#ctor(Heritage.Domain.Core.Entities.MyPoint)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:Heritage.Domain.Core.Entities.Fakes.ShimMyPoint.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimMyPoint.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimMyPoint.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimMyPoint.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimMyPoint.Bind(NetTopologySuite.Geometries.IPuntal)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimMyPoint.Bind(System.IComparable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.ShimMyPoint.Bind(System.IComparable{NetTopologySuite.Geometries.Geometry})">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.ShimMyPoint.ConstructorDoubleDoubleInt32">
+            <summary>Sets the shim of MyPoint.MyPoint(MyPoint this, Double latitude, Double longitude, Int32 srid)</summary>
+        </member>
+        <member name="T:Heritage.Domain.Core.Entities.Fakes.StubConstruction">
+            <summary>Stub type of Heritage.Domain.Core.Entities.Construction</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubConstruction.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubConstruction.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubConstruction.InitializeStub">
+            <summary>Initializes a new instance of type StubConstruction</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubConstruction.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubConstruction.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Heritage.Domain.Core.Entities.Fakes.StubImage">
+            <summary>Stub type of Heritage.Domain.Core.Entities.Image</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubImage.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubImage.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubImage.InitializeStub">
+            <summary>Initializes a new instance of type StubImage</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubImage.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubImage.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Heritage.Domain.Core.Entities.Fakes.StubMyPoint">
+            <summary>Stub type of Heritage.Domain.Core.Entities.MyPoint</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.#ctor(System.Double,System.Double,System.Int32)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Apply(NetTopologySuite.Geometries.ICoordinateFilter)">
+            <summary>Sets the stub of Point.Apply(Point this, ICoordinateFilter filter)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Apply(NetTopologySuite.Geometries.ICoordinateSequenceFilter)">
+            <summary>Sets the stub of Point.Apply(Point this, ICoordinateSequenceFilter filter)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Apply(NetTopologySuite.Geometries.IGeometryComponentFilter)">
+            <summary>Sets the stub of Point.Apply(Point this, IGeometryComponentFilter filter)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Apply(NetTopologySuite.Geometries.IGeometryFilter)">
+            <summary>Sets the stub of Point.Apply(Point this, IGeometryFilter filter)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.ApplyICoordinateFilter">
+            <summary>Sets the stub of Point.Apply(Point this, ICoordinateFilter filter)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.ApplyICoordinateSequenceFilter">
+            <summary>Sets the stub of Point.Apply(Point this, ICoordinateSequenceFilter filter)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.ApplyIGeometryComponentFilter">
+            <summary>Sets the stub of Point.Apply(Point this, IGeometryComponentFilter filter)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.ApplyIGeometryFilter">
+            <summary>Sets the stub of Point.Apply(Point this, IGeometryFilter filter)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Area">
+            <summary>Sets the stub of Geometry.get_Area(Geometry this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.AreaGet">
+            <summary>Sets the stub of Geometry.get_Area(Geometry this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Boundary">
+            <summary>Sets the stub of Point.get_Boundary(Point this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.BoundaryDimension">
+            <summary>Sets the stub of Point.get_BoundaryDimension(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.BoundaryDimensionGet">
+            <summary>Sets the stub of Point.get_BoundaryDimension(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.BoundaryGet">
+            <summary>Sets the stub of Point.get_Boundary(Point this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Centroid">
+            <summary>Sets the stub of Geometry.get_Centroid(Geometry this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.CentroidGet">
+            <summary>Sets the stub of Geometry.get_Centroid(Geometry this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.CompareToSameClass(System.Object)">
+            <summary>Sets the stub of Point.CompareToSameClass(Point this, Object other)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.CompareToSameClass(System.Object,System.Collections.Generic.IComparer{NetTopologySuite.Geometries.CoordinateSequence})">
+            <summary>Sets the stub of Point.CompareToSameClass(Point this, Object other, IComparer`1 comparer)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.CompareToSameClassObject">
+            <summary>Sets the stub of Point.CompareToSameClass(Point this, Object other)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.CompareToSameClassObjectIComparerOfCoordinateSequence">
+            <summary>Sets the stub of Point.CompareToSameClass(Point this, Object other, IComparer`1 comparer)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.ComputeEnvelopeInternal">
+            <summary>Sets the stub of Point.ComputeEnvelopeInternal(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.ComputeEnvelopeInternal01">
+            <summary>Sets the stub of Point.ComputeEnvelopeInternal(Point this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Contains(NetTopologySuite.Geometries.Geometry)">
+            <summary>Sets the stub of Geometry.Contains(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.ContainsGeometry">
+            <summary>Sets the stub of Geometry.Contains(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.ConvexHull">
+            <summary>Sets the stub of Geometry.ConvexHull(Geometry this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.ConvexHull01">
+            <summary>Sets the stub of Geometry.ConvexHull(Geometry this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Coordinate">
+            <summary>Sets the stub of Point.get_Coordinate(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.CoordinateGet">
+            <summary>Sets the stub of Point.get_Coordinate(Point this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Coordinates">
+            <summary>Sets the stub of Point.get_Coordinates(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.CoordinatesGet">
+            <summary>Sets the stub of Point.get_Coordinates(Point this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.CopyInternal">
+            <summary>Sets the stub of Point.CopyInternal(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.CopyInternal01">
+            <summary>Sets the stub of Point.CopyInternal(Point this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Covers(NetTopologySuite.Geometries.Geometry)">
+            <summary>Sets the stub of Geometry.Covers(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.CoversGeometry">
+            <summary>Sets the stub of Geometry.Covers(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Crosses(NetTopologySuite.Geometries.Geometry)">
+            <summary>Sets the stub of Geometry.Crosses(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.CrossesGeometry">
+            <summary>Sets the stub of Geometry.Crosses(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Dimension">
+            <summary>Sets the stub of Point.get_Dimension(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.DimensionGet">
+            <summary>Sets the stub of Point.get_Dimension(Point this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Distance(NetTopologySuite.Geometries.Geometry)">
+            <summary>Sets the stub of Geometry.Distance(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.DistanceGeometry">
+            <summary>Sets the stub of Geometry.Distance(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.EqualsExact(NetTopologySuite.Geometries.Geometry,System.Double)">
+            <summary>Sets the stub of Point.EqualsExact(Point this, Geometry other, Double tolerance)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.EqualsExactGeometryDouble">
+            <summary>Sets the stub of Point.EqualsExact(Point this, Geometry other, Double tolerance)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.EqualsTopologically(NetTopologySuite.Geometries.Geometry)">
+            <summary>Sets the stub of Geometry.EqualsTopologically(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.EqualsTopologicallyGeometry">
+            <summary>Sets the stub of Geometry.EqualsTopologically(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.GeometryType">
+            <summary>Sets the stub of Point.get_GeometryType(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.GeometryTypeGet">
+            <summary>Sets the stub of Point.get_GeometryType(Point this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.GetGeometryN(System.Int32)">
+            <summary>Sets the stub of Geometry.GetGeometryN(Geometry this, Int32 n)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.GetGeometryNInt32">
+            <summary>Sets the stub of Geometry.GetGeometryN(Geometry this, Int32 n)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.GetHashCode">
+            <summary>Sets the stub of Geometry.GetHashCode(Geometry this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.GetHashCode01">
+            <summary>Sets the stub of Geometry.GetHashCode(Geometry this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.GetOrdinates(NetTopologySuite.Geometries.Ordinate)">
+            <summary>Sets the stub of Point.GetOrdinates(Point this, Ordinate ordinate)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.GetOrdinatesOrdinate">
+            <summary>Sets the stub of Point.GetOrdinates(Point this, Ordinate ordinate)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.InitializeStub">
+            <summary>Initializes a new instance of type StubMyPoint</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.InteriorPoint">
+            <summary>Sets the stub of Geometry.get_InteriorPoint(Geometry this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.InteriorPointGet">
+            <summary>Sets the stub of Geometry.get_InteriorPoint(Geometry this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Intersects(NetTopologySuite.Geometries.Geometry)">
+            <summary>Sets the stub of Geometry.Intersects(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IntersectsGeometry">
+            <summary>Sets the stub of Geometry.Intersects(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IsEmpty">
+            <summary>Sets the stub of Point.get_IsEmpty(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IsEmptyGet">
+            <summary>Sets the stub of Point.get_IsEmpty(Point this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IsEquivalentClass(NetTopologySuite.Geometries.Geometry)">
+            <summary>Sets the stub of Geometry.IsEquivalentClass(Geometry this, Geometry other)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IsEquivalentClassGeometry">
+            <summary>Sets the stub of Geometry.IsEquivalentClass(Geometry this, Geometry other)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IsRectangle">
+            <summary>Sets the stub of Geometry.get_IsRectangle(Geometry this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IsRectangleGet">
+            <summary>Sets the stub of Geometry.get_IsRectangle(Geometry this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IsSimple">
+            <summary>Sets the stub of Geometry.get_IsSimple(Geometry this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IsSimpleGet">
+            <summary>Sets the stub of Geometry.get_IsSimple(Geometry this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IsValid">
+            <summary>Sets the stub of Geometry.get_IsValid(Geometry this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IsValidGet">
+            <summary>Sets the stub of Geometry.get_IsValid(Geometry this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IsWithinDistance(NetTopologySuite.Geometries.Geometry,System.Double)">
+            <summary>Sets the stub of Geometry.IsWithinDistance(Geometry this, Geometry geom, Double distance)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.IsWithinDistanceGeometryDouble">
+            <summary>Sets the stub of Geometry.IsWithinDistance(Geometry this, Geometry geom, Double distance)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Length">
+            <summary>Sets the stub of Geometry.get_Length(Geometry this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.LengthGet">
+            <summary>Sets the stub of Geometry.get_Length(Geometry this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Normalize">
+            <summary>Sets the stub of Point.Normalize(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Normalize01">
+            <summary>Sets the stub of Point.Normalize(Point this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.NumGeometries">
+            <summary>Sets the stub of Geometry.get_NumGeometries(Geometry this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.NumGeometriesGet">
+            <summary>Sets the stub of Geometry.get_NumGeometries(Geometry this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.NumPoints">
+            <summary>Sets the stub of Point.get_NumPoints(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.NumPointsGet">
+            <summary>Sets the stub of Point.get_NumPoints(Point this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.OgcGeometryType">
+            <summary>Sets the stub of Point.get_OgcGeometryType(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.OgcGeometryTypeGet">
+            <summary>Sets the stub of Point.get_OgcGeometryType(Point this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Overlaps(NetTopologySuite.Geometries.Geometry)">
+            <summary>Sets the stub of Geometry.Overlaps(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.OverlapsGeometry">
+            <summary>Sets the stub of Geometry.Overlaps(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Relate(NetTopologySuite.Geometries.Geometry)">
+            <summary>Sets the stub of Geometry.Relate(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Relate(NetTopologySuite.Geometries.Geometry,System.String)">
+            <summary>Sets the stub of Geometry.Relate(Geometry this, Geometry g, String intersectionPattern)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.RelateGeometry">
+            <summary>Sets the stub of Geometry.Relate(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.RelateGeometryString">
+            <summary>Sets the stub of Geometry.Relate(Geometry this, Geometry g, String intersectionPattern)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Reverse">
+            <summary>Sets the stub of Point.Reverse(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Reverse01">
+            <summary>Sets the stub of Point.Reverse(Point this)</summary>
+        </member>
+        <member name="P:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.SortIndex">
+            <summary>Sets the stub of Point.get_SortIndex(Point this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.SortIndexGet">
+            <summary>Sets the stub of Point.get_SortIndex(Point this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.ToString">
+            <summary>Sets the stub of Geometry.ToString(Geometry this)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.ToString01">
+            <summary>Sets the stub of Geometry.ToString(Geometry this)</summary>
+        </member>
+        <member name="M:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.Touches(NetTopologySuite.Geometries.Geometry)">
+            <summary>Sets the stub of Geometry.Touches(Geometry this, Geometry g)</summary>
+        </member>
+        <member name="F:Heritage.Domain.Core.Entities.Fakes.StubMyPoint.TouchesGeometry">
+            <summary>Sets the stub of Geometry.Touches(Geometry this, Geometry g)</summary>
+        </member>
+    </members>
+</doc>

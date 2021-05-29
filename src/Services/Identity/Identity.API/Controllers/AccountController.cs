@@ -1,13 +1,14 @@
-﻿using AutoMapper;
-using Identity.Services.Interfaces.Contracts;
+﻿using Identity.Services.Interfaces.Contracts;
+using Identity.Services.Interfaces.Models.Sorting;
 using Identity.Services.Interfaces.Models.User;
-using Identity.Services.Interfaces.Models.User.Abstract;
+using Identity.Services.Interfaces.Models.User.ConfirmRegister;
+using Identity.Services.Interfaces.Models.User.ForgotPassword;
 using Identity.Services.Interfaces.Models.User.Login;
+using Identity.Services.Interfaces.Models.User.Profile;
 using Identity.Services.Interfaces.Models.User.Register;
-using Microsoft.AspNetCore.Http;
+using Identity.Services.Interfaces.Models.User.Register.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace Identity.API.Controllers
@@ -17,41 +18,53 @@ namespace Identity.API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IMapper _mapper;
 
-        public AccountController(IUserService userService, IMapper mapper)
+        public AccountController(IUserService userService)
         {
             _userService = userService;
-            _mapper = mapper;
         }
 
         [HttpGet("users")]
-        public async Task<IActionResult> Index(int? page, int? pageSize)
+        public async Task<IActionResult> Index(Guid? user, string email, int? page, int? pageSize, SortState sortOrder)
         {
-            var users = await _userService.GetUsingPaginationAsync(page ?? 1, pageSize ?? 10);
+            var users = await _userService.GetUsingPaginationAsync(user, email, page ?? 1, pageSize ?? 10, sortOrder);
 
             return Ok(users);
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterRequestModel model)
+        public async Task<IActionResult> Register(RegisterRequestModel requestModel)
         {
-            try
-            {
-                var registerCoreModel = _mapper.Map<RegisterCoreModel>(model);
+            //try
+            //{
+            var result = await _userService.RegisterAsync(requestModel);
 
-                var result = await _userService.RegisterAsync(registerCoreModel);
+            return Ok(result);
+            //}
+            //catch (ValidationException ex)
+            //{
+            //    return BadRequest(ex.Message);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            //}
+        }
 
-                return Ok(result);
-            }
-            catch (ValidationException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
+        [HttpPost("confirmregister")]
+        public async Task<IActionResult> ConfirmRegister()
+        {
+            await _userService.ConfirmRegisterAsync();
+
+            return Ok();
+        }
+
+        [HttpPost("confirmemail")]
+        public async Task<IActionResult> ConfirmEmail([FromQuery] ConfirmRequestModel model)
+        {
+            await _userService.ConfirmEmailAsync(model);
+
+            return Ok();
         }
 
         [HttpPost("login")]
@@ -64,6 +77,14 @@ namespace Identity.API.Controllers
 
 
             return Ok(loginResponseModel);
+        }
+
+        [HttpPost("forgot")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordRequestModel model)
+        {
+            await _userService.ForgotPasswordAsync(model);
+
+            return Ok();
         }
 
         [HttpPost("role")]
@@ -80,7 +101,7 @@ namespace Identity.API.Controllers
         public async Task<IActionResult> DeleteUser(CoreModel user)
         {
             await _userService.DeleteUserAsync(user.Id);
-            
+
             return Ok();
         }
 
@@ -93,18 +114,6 @@ namespace Identity.API.Controllers
                 return BadRequest(new { message = "User is not found" });
 
             return Ok(result);
-        }
-
-        [HttpGet("getpic")]
-        public async Task<IActionResult> GetImage([FromQuery] CoreModel user)
-        {
-            var result = await _userService.GetImageByIdAsync(user.Id);
-            if (result == null)
-                return BadRequest(new { message = "Image is not found" });
-
-            //var base64 = Convert.ToBase64String(result);
-
-            return Ok("data:image/png; base64, " + result);
         }
 
         [HttpPost("updateprofile")]

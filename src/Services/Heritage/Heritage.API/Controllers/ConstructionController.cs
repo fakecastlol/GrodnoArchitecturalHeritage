@@ -2,11 +2,10 @@
 using Heritage.Services.Interfaces.Contracts;
 using Heritage.Services.Interfaces.Models.Construction;
 using Heritage.Services.Interfaces.Models.Construction.Abstract;
+using Heritage.Services.Interfaces.Models.Sorting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Heritage.API.Controllers
 {
@@ -15,24 +14,29 @@ namespace Heritage.API.Controllers
     public class ConstructionController : ControllerBase
     {
         private readonly IConstructionService _constructionService;
-        private readonly IMapper _mapper;
 
-        public ConstructionController(IConstructionService constructionService, IMapper mapper)
+        public ConstructionController(IConstructionService constructionService)
         {
             _constructionService = constructionService;
-            _mapper = mapper;
         }
 
-        // GET: api/<ConstructionController>
         [HttpGet("constructions")]
-        public async Task<IActionResult> GetAll(int? page, int? pageSize)
+        public async Task<IActionResult> GetPaginationAll(Guid? construction, string name, int? page, int? pageSize, SortState sortOrder)
         {
-            var constructions = await _constructionService.GetUsingPaginationAsync(page ?? 1, pageSize ?? 10);
+            var constructions = await _constructionService.GetUsingPaginationAsync(construction, name, page ?? 1, pageSize ?? 10, sortOrder);
 
             return Ok(constructions);
         }
 
-        // GET api/<ConstructionController>/5
+
+        [HttpGet("getallconstructions")]
+        public async Task<IActionResult> GetAll()
+        {
+            var constructions = await _constructionService.GetAllAsync();
+
+            return Ok(constructions);
+        }
+
         [HttpGet("getconstruction")]
         public async Task<IActionResult> Get([FromQuery] CoreModel model)
         {
@@ -44,26 +48,33 @@ namespace Heritage.API.Controllers
             return Ok(construction);
         }
 
-        // POST api/<ConstructionController>
         [HttpPost("createconstruction")]
         public async Task<IActionResult> Post([FromBody] ConstructionRequestCoreModel model)
         {
-            var result = await _constructionService.CreateConstructionAsync(model);
+            await _constructionService.CreateConstructionAsync(model);
 
-            return Ok(result);
+            return Ok();
         }
 
-        // PUT api/<ConstructionController>/5
+        [HttpPost("updateconstruction")]
+        public async Task<IActionResult> PostProfile(ConstructionRequestCoreModel model)
+        {
+            var updateProfile = await _constructionService.UpdateConstructionAsync(model);
+            if (model == null)
+                return BadRequest(new { message = "User is not found." });
+
+            return Ok(updateProfile);
+        }
+
         [HttpPut("")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<ConstructionController>/5
         [HttpDelete("deleteconstruction")]
-        public async Task Delete(Guid id)
+        public async Task Delete(CoreModel model)
         {
-            await _constructionService.DeleteConstructionAsync(id);
+            await _constructionService.DeleteConstructionAsync(model.Id);
         }
     }
 }

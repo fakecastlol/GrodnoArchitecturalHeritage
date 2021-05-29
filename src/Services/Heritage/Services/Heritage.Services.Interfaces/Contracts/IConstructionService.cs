@@ -1,30 +1,25 @@
-﻿using System;
+﻿using Heritage.Services.Interfaces.Models.Construction;
+using Heritage.Services.Interfaces.Models.Image;
+using Heritage.Services.Interfaces.Models.Sorting;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Heritage.Services.Interfaces.Models.Construction;
-using Heritage.Services.Interfaces.Models.Pagination;
 
 namespace Heritage.Services.Interfaces.Contracts
 {
     public interface IConstructionService
     {
-        Task<PaginatedList<ConstructionResponseCoreModel>> GetUsingPaginationAsync(int pageNumber, int pageSize);
+        Task<IndexViewModel<ConstructionResponseCoreModel>> GetUsingPaginationAsync(Guid? construction, string name, int pageNumber, int pageSize, SortState sortOrder);
 
         Task<ConstructionResponseCoreModel> GetConstructionByIdAsync(Guid id);
 
-        //Task<UserResponseCoreModel> SetUserRole(SetRoleRequestModel userResponseCoreModel);
+        Task<ConstructionResponseCoreModel> UpdateConstructionAsync(ConstructionRequestCoreModel requestCoreModel);
 
-        //Task<UserResponseCoreModel> UpdateProfileAsync(ProfileRequestModel profileRequestModel);
+        Task<ConstructionResponseCoreModel> UpdateImageAsync(ImageRequestModel imageRequestModel);
 
-        //Task<UserResponseCoreModel> UpdateImageAsync(ImageViewModel imageRequestModel);
+        Task<List<ConstructionResponseCoreModel>> GetAllAsync();
 
         Task<ConstructionResponseCoreModel> CreateConstructionAsync(ConstructionRequestCoreModel requestModel);
-
-        //Task<UserResponseCoreModel> UpdateAsync(UserResponseCoreModel item);
-
-        //Task<UserResponseCoreModel> DeleteImageAsync(ImageViewModel imageRequestModel);
-
-        //Task<byte[]> GetImageByIdAsync(Guid id);
 
         Task DeleteConstructionAsync(Guid id);
     }

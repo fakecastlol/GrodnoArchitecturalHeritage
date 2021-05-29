@@ -1,12 +1,13 @@
-using FluentValidation.AspNetCore;
 using Identity.API.Extensions;
 using Identity.Infrastructure.Data.EFContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.IO;
 
 namespace Identity.API
 {
@@ -21,6 +22,8 @@ namespace Identity.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+
             services.AddAppConnections(_configuration);
 
             services.AddConfigures(_configuration);
@@ -35,7 +38,7 @@ namespace Identity.API
 
             services.AddValidators();
 
-            services.AddControllers().AddFluentValidation();
+            services.AddControllers()/*.AddFluentValidation()*/;
         }
 
 
@@ -47,6 +50,13 @@ namespace Identity.API
             }
 
             app.UseStaticFiles();
+
+            app.UseFileServer(new FileServerOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "files")),
+                RequestPath = Path.Combine(env.ContentRootPath, "files"),
+                EnableDirectoryBrowsing = true
+            });
 
             app.UseRouting();
 

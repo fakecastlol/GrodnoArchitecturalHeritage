@@ -16,18 +16,18 @@ namespace Identity.Infrastructure.Data.EFContext
 
             context.Database.Migrate();
 
-            var superAdmin =  context.Users.FirstOrDefault(u => u.Role.Equals(Roles.SuperAdmin));
+            //var superAdmin = context.Users.FirstOrDefault(u => u.Role.Equals(Roles.SuperAdmin));
 
-            if (superAdmin != null) return;
-            
-            superAdmin = new UserEntity
-            {
-                Email = "superadmin@gmail.com",
-                Id = Guid.NewGuid(),
-                Role = Roles.SuperAdmin
-            };
+            //if (superAdmin != null) return;
 
-            context.Users.Add(superAdmin);
+            //superAdmin = new User
+            //{
+            //    Email = "superadmin@gmail.com",
+            //    Id = Guid.NewGuid(),
+            //    Role = Roles.SuperAdmin
+            //};
+
+            //context.Users.Add(superAdmin);
             context.SaveChanges();
         }
     }

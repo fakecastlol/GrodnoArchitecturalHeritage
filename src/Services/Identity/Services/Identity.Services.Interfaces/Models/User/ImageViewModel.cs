@@ -1,4 +1,4 @@
-﻿using Identity.Services.Interfaces.Models.User.Abstract;
+﻿using Identity.Services.Interfaces.Models.User.Register.Abstract;
 using Microsoft.AspNetCore.Http;
 
 namespace Identity.Services.Interfaces.Models.User

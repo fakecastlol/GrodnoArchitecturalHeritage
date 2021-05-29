@@ -4,6 +4,8 @@
     {
         SuperAdmin = 1,
         Admin = 2,
-        User = 3
+        User = 3,
+        Moderator = 4,
+        Unchecked = 5
     }
 }

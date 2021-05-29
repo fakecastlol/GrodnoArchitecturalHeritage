@@ -1,7 +1,7 @@
-﻿using System.Text;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Web.Platform.HttpAggregator.Extensions
 {
@@ -11,7 +11,8 @@ namespace Web.Platform.HttpAggregator.Extensions
         {
             const string authenticationProviderKey = "Bearer";
 
-            services.AddAuthentication().AddJwtBearer(authenticationProviderKey, options => {
+            services.AddAuthentication().AddJwtBearer(authenticationProviderKey, options =>
+            {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,

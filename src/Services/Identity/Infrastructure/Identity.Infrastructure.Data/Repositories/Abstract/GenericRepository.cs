@@ -1,13 +1,12 @@
 ﻿using Identity.Domain.Core.Entities.Abstract;
-using Identity.Domain.Interfaces.Repositories.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using Identity.Domain.Core.Entities;
+using Identity.Domain.Interfaces.Repositories.Generic;
+
 
 namespace Identity.Infrastructure.Data.Repositories.Abstract
 {

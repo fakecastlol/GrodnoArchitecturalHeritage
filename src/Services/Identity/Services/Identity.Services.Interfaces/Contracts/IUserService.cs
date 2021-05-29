@@ -1,16 +1,18 @@
-﻿using Identity.Services.Interfaces.Models.Pagination;
+﻿using Identity.Services.Interfaces.Models.Sorting;
 using Identity.Services.Interfaces.Models.User;
+using Identity.Services.Interfaces.Models.User.ConfirmRegister;
+using Identity.Services.Interfaces.Models.User.ForgotPassword;
 using Identity.Services.Interfaces.Models.User.Login;
+using Identity.Services.Interfaces.Models.User.Profile;
 using Identity.Services.Interfaces.Models.User.Register;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Identity.Services.Interfaces.Contracts
 {
     public interface IUserService
     {
-        Task<PaginatedList<UserResponseCoreModel>> GetUsingPaginationAsync(int pageNumber, int pageSize);
+        Task<IndexViewModel<UserResponseCoreModel>> GetUsingPaginationAsync(Guid? user, string email, int pageNumber, int pageSize, SortState sortOrder);
 
         Task<UserResponseCoreModel> GetUserByIdAsync(Guid id);
 
@@ -22,11 +24,15 @@ namespace Identity.Services.Interfaces.Contracts
 
         Task<RegisterResponseModel> AuthenticateAsync(LoginRequestModel loginCoreModel);
 
-        Task<RegisterResponseModel> RegisterAsync(RegisterCoreModel registerCoreModel);
+        Task<RegisterResponseModel> RegisterAsync(RegisterRequestModel requestModel);
+
+        Task ConfirmRegisterAsync();
+
+        Task ConfirmEmailAsync(ConfirmRequestModel model);
+
+        Task ForgotPasswordAsync(ForgotPasswordRequestModel model);
 
         Task<UserResponseCoreModel> DeleteImageAsync(ImageViewModel imageRequestModel);
-
-        Task<string> GetImageByIdAsync(Guid id);
 
         Task DeleteUserAsync(Guid id);
     }

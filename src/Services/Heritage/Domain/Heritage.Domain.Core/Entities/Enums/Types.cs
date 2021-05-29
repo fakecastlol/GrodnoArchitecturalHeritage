@@ -2,6 +2,8 @@
 {
     public enum Types
     {
-        Building = 1
+        Sacral = 1,
+        Castle = 2,
+        Attraction = 3
     }
 }

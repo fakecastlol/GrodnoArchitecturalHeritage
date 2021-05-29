@@ -7,6 +7,34 @@
   <ItemGroup>
     <Compile Remove="Migrations\20201203125258_initial_migration.cs" />
     <Compile Remove="Migrations\20201203125258_initial_migration.Designer.cs" />
+    <Compile Remove="Migrations\20201203130100_initial_migration.cs" />
+    <Compile Remove="Migrations\20201203130100_initial_migration.Designer.cs" />
+    <Compile Remove="Migrations\20201209115255_added_location.cs" />
+    <Compile Remove="Migrations\20201209115255_added_location.Designer.cs" />
+    <Compile Remove="Migrations\20201212114958_fixed_fields.cs" />
+    <Compile Remove="Migrations\20201212114958_fixed_fields.Designer.cs" />
+    <Compile Remove="Migrations\20201212120703_fixed_fields2.cs" />
+    <Compile Remove="Migrations\20201212120703_fixed_fields2.Designer.cs" />
+    <Compile Remove="Migrations\20201213094519_added_status_field.cs" />
+    <Compile Remove="Migrations\20201213094519_added_status_field.Designer.cs" />
+    <Compile Remove="Migrations\20201213105309_changed_date_format.cs" />
+    <Compile Remove="Migrations\20201213105309_changed_date_format.Designer.cs" />
+    <Compile Remove="Migrations\20201215222843_added_data_annotations.cs" />
+    <Compile Remove="Migrations\20201215222843_added_data_annotations.Designer.cs" />
+    <Compile Remove="Migrations\20201215223257_initial_migration.cs" />
+    <Compile Remove="Migrations\20201215223257_initial_migration.Designer.cs" />
+    <Compile Remove="Migrations\20201215224202_added_data_annotations.cs" />
+    <Compile Remove="Migrations\20201215224202_added_data_annotations.Designer.cs" />
+    <Compile Remove="Migrations\20201215224734_added_data_annotations.cs" />
+    <Compile Remove="Migrations\20201215224734_added_data_annotations.Designer.cs" />
+    <Compile Remove="Migrations\20201215224848_added_data_annotations.cs" />
+    <Compile Remove="Migrations\20201215224848_added_data_annotations.Designer.cs" />
+    <Compile Remove="Migrations\20201221204813_added_description_field.cs" />
+    <Compile Remove="Migrations\20201221204813_added_description_field.Designer.cs" />
+    <Compile Remove="Migrations\20201221210733_added_description_field.cs" />
+    <Compile Remove="Migrations\20201221210733_added_description_field.Designer.cs" />
+    <Compile Remove="Migrations\20201222090355_added_description_and_data_annotations.cs" />
+    <Compile Remove="Migrations\20201222090355_added_description_and_data_annotations.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
