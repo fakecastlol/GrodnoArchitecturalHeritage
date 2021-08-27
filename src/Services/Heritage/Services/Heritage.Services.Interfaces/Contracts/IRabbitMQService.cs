@@ -1,7 +1,7 @@
 ﻿namespace Heritage.Services.Interfaces.Contracts
 {
-    public interface IRabbitMQService
+    public interface IEventBus
     {
-        void SendMessageToQueue(object message);
+        void Publish(object message);
     }
 }

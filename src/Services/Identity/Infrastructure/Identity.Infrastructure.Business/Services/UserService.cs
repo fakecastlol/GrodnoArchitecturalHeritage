@@ -199,13 +199,10 @@ namespace Identity.Infrastructure.Business.Services
 
             try
             {
-                //_logger.LogInformation("sending to queue...");
                 _rabbitMQService.SendMessageToQueue(startEndpoint);
-                //_logger.LogInformation("message was send to queue");
             }
             catch (Exception ex)
             {
-                /*_logger.LogError*/
                 Console.WriteLine(ex.Message);
             }
 

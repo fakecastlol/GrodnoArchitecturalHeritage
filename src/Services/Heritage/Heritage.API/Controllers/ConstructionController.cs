@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using Heritage.API.IntegrationEvents.Enums;
+using Heritage.API.IntegrationEvents.EventHandling;
+using Heritage.API.IntegrationEvents.Events;
 using Heritage.Services.Interfaces.Contracts;
 using Heritage.Services.Interfaces.Models.Construction;
 using Heritage.Services.Interfaces.Models.Construction.Abstract;
@@ -14,10 +16,12 @@ namespace Heritage.API.Controllers
     public class ConstructionController : ControllerBase
     {
         private readonly IConstructionService _constructionService;
+        private readonly IEventBus _eventBus;
 
-        public ConstructionController(IConstructionService constructionService)
+        public ConstructionController(IConstructionService constructionService, IEventBus eventBus)
         {
             _constructionService = constructionService;
+            _eventBus = eventBus;
         }
 
         [HttpGet("constructions")]
@@ -51,19 +55,41 @@ namespace Heritage.API.Controllers
         [HttpPost("createconstruction")]
         public async Task<IActionResult> Post([FromBody] ConstructionRequestCoreModel model)
         {
-            await _constructionService.CreateConstructionAsync(model);
+            try
+            {
+                var createdModel = await _constructionService.CreateConstructionAsync(model);
+                var eventMessage = new ConstructionIntegrationEventHandler(new ConstructionIntegrationEvent(DateTime.UtcNow, Actions.Create.ToString(), createdModel.Name, createdModel.Id));
+
+                _eventBus.Publish(eventMessage);
+            }
+            catch
+            {
+                return BadRequest();
+            }
 
             return Ok();
         }
 
         [HttpPost("updateconstruction")]
-        public async Task<IActionResult> PostProfile(ConstructionRequestCoreModel model)
+        public async Task<IActionResult> Update(ConstructionRequestCoreModel model)
         {
-            var updateProfile = await _constructionService.UpdateConstructionAsync(model);
             if (model == null)
-                return BadRequest(new { message = "User is not found." });
+                return BadRequest(new { message = "Object is not found." });
 
-            return Ok(updateProfile);
+            var updatedModel = await _constructionService.UpdateConstructionAsync(model);
+
+            try
+            {
+                var eventMessage = new ConstructionIntegrationEventHandler(new ConstructionIntegrationEvent(DateTime.UtcNow, Actions.Update.ToString(), updatedModel.Name, updatedModel.Id));
+
+                _eventBus.Publish(eventMessage);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+
+            return Ok(updatedModel);
         }
 
         [HttpPut("")]
@@ -75,6 +101,9 @@ namespace Heritage.API.Controllers
         public async Task Delete(CoreModel model)
         {
             await _constructionService.DeleteConstructionAsync(model.Id);
+            var eventMessage = new ConstructionIntegrationEventHandler(new ConstructionIntegrationEvent(DateTime.UtcNow, Actions.Delete.ToString(), model.Id));
+
+            _eventBus.Publish(eventMessage);
         }
     }
 }

@@ -51,7 +51,7 @@ namespace Heritage.API.Extensions
 
         public static void AddServices(this IServiceCollection services)
         {
-            services.AddSingleton<IRabbitMQService, RabbitMQService>();
+            services.AddSingleton<IEventBus, RabbitMQService>();
 
             services.AddScoped<IFileService, FileService>();
 

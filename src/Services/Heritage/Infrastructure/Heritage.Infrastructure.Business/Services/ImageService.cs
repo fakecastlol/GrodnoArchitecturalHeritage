@@ -15,9 +15,9 @@ namespace Heritage.Infrastructure.Business.Services
         public readonly IConstructionRepository _constructionRepository;
         public readonly IFileService _fileService;
         public readonly IMapper _mapper;
-        public readonly IRabbitMQService _rabbitMQService;
+        public readonly IEventBus _rabbitMQService;
 
-        public ImageService(IImageRepository imageRepository, IConstructionRepository constructionRepository, IFileService fileService, IMapper mapper, IRabbitMQService rabbitMQService)
+        public ImageService(IImageRepository imageRepository, IConstructionRepository constructionRepository, IFileService fileService, IMapper mapper, IEventBus rabbitMQService)
         {
             _imageRepository = imageRepository;
             _constructionRepository = constructionRepository;
@@ -52,7 +52,7 @@ namespace Heritage.Infrastructure.Business.Services
 
             try
             {
-                _rabbitMQService.SendMessageToQueue(startEndpoint);
+                _rabbitMQService.Publish(startEndpoint);
             }
             catch (Exception ex)
             {

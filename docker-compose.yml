@@ -31,7 +31,17 @@ services:
 #    depends_on:
 #      - sql-data
 #      - rabbit-mq
-      
+
+  fileservice-api:
+    image: fileservice:latest
+    container_name: fileservice-api
+    restart: always
+    build:
+     context: src/Services/FileService
+#    depends_on:
+#      - sql-data
+#      - rabbit-mq
+
   logger-api:
     image: logger:latest
     container_name: logger-api

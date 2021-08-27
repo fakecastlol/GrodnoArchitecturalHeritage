@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Heritage.Infrastructure.Business.Support.RabbitMQ
 {
-    public class RabbitMQService : IRabbitMQService
+    public class RabbitMQService : IEventBus
     {
         private readonly string _hostname;
         private readonly string _queueName;
@@ -29,7 +29,7 @@ namespace Heritage.Infrastructure.Business.Support.RabbitMQ
             CreateConnection();
         }
 
-        public void SendMessageToQueue(object message)
+        public void Publish(object message)
         {
             if (ConnectionExists())
             {

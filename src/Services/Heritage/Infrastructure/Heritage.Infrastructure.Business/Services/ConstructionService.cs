@@ -2,7 +2,6 @@
 using Heritage.Domain.Core.Entities;
 using Heritage.Domain.Interfaces.Repositories;
 using Heritage.Services.Interfaces.Contracts;
-using Heritage.Services.Interfaces.Models.Actions;
 using Heritage.Services.Interfaces.Models.Construction;
 using Heritage.Services.Interfaces.Models.Filtration.FilterSortPagingApp.Models;
 using Heritage.Services.Interfaces.Models.Image;
@@ -22,15 +21,11 @@ namespace Heritage.Infrastructure.Business.Services
     {
         private readonly IConstructionRepository _constructionRepository;
         private readonly IMapper _mapper;
-        private readonly IRabbitMQService _rabbitMQService;
-        private readonly IFileService _fileService;
 
-        public ConstructionService(IConstructionRepository constructionRepository, IMapper mapper, IRabbitMQService rabbitMQService, IFileService fileService)
+        public ConstructionService(IConstructionRepository constructionRepository, IMapper mapper)
         {
             _constructionRepository = constructionRepository;
             _mapper = mapper;
-            _rabbitMQService = rabbitMQService;
-            _fileService = fileService;
         }
 
         public async Task<IndexViewModel<ConstructionResponseCoreModel>> GetUsingPaginationAsync(Guid? construction, string name, int pageNumber, int pageSize, SortState sortOrder = SortState.NameAsc)
@@ -99,8 +94,6 @@ namespace Heritage.Infrastructure.Business.Services
             var existingConstruction = await (await _constructionRepository.GetAllAsync(u => u.Name.Equals(requestModel.Name)))
                 .FirstOrDefaultAsync();
 
-            var startEndpoint = $"[{DateTime.UtcNow}] - EndPoint: [/createconstruction]  - Name: [{requestModel.Name}] ";
-
             if (existingConstruction != null)
             {
                 throw new ValidationException($"User with email {requestModel.Name} already exists", "");
@@ -119,22 +112,11 @@ namespace Heritage.Infrastructure.Business.Services
 
             var responseModel = _mapper.Map<ConstructionResponseCoreModel>(createdConstructionEntity);
 
-            try
-            {
-                _rabbitMQService.SendMessageToQueue(startEndpoint);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
             return responseModel;
         }
 
         public async Task<ConstructionResponseCoreModel> UpdateConstructionAsync(ConstructionRequestCoreModel requestModel)
         {
-            var startEndpoint = $"[{DateTime.UtcNow}] - EndPoint: [/updateconstruction]  - Name: [{requestModel.Name}] ";
-
             var construction = await _constructionRepository.GetByIdAsync(requestModel.Id);
             var loc = requestModel.Location?.Replace(" ", "").Split(',').Select(double.Parse).ToList();
 
@@ -149,32 +131,12 @@ namespace Heritage.Infrastructure.Business.Services
 
             var result = _mapper.Map<ConstructionResponseCoreModel>(update);
 
-            try
-            {
-                _rabbitMQService.SendMessageToQueue(startEndpoint);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
             return result;
         }
 
         public async Task DeleteConstructionAsync(Guid id)
         {
-            var startEndpoint = $"[{DateTime.UtcNow}] - EndPoint: [/deleteconstruction]  - Id: [{id}] ";
-
             await _constructionRepository.DeleteAsync(id);
-
-            try
-            {
-                _rabbitMQService.SendMessageToQueue(startEndpoint);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
         }
 
         public Task<ConstructionResponseCoreModel> UpdateImageAsync(ImageRequestModel imageRequestModel)
